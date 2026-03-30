@@ -626,41 +626,41 @@ nav{
 .baby2-badge.sent{background:rgba(6,199,85,.15);color:#06c755;border:1px solid rgba(6,199,85,.3)}
 .baby2-badge.ok{background:rgba(46,204,113,.15);color:#2ecc71;border:1px solid rgba(46,204,113,.3)}
 
-/* ─── FAQ チャットボットモック ─── */
+/* ─── FAQ チャットボットモック（ダーク） ─── */
 .mock-chat{
-  background:#f5f7ff;
+  background:#0d0f1a;
   width:100%;height:100%;
   padding:16px 20px;
   display:flex;flex-direction:column;gap:10px;
 }
 .chat-header{
   display:flex;align-items:center;gap:12px;
-  padding-bottom:12px;border-bottom:2px solid var(--ink);
+  padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08);
 }
 .chat-icon{
   width:36px;height:36px;border-radius:10px;
-  background:var(--ink);
+  background:rgba(61,111,255,.25);
   display:flex;align-items:center;justify-content:center;
   font-size:18px;
-  border:2px solid var(--ink);
+  border:1px solid rgba(61,111,255,.4);
 }
-.chat-title{font-family:'Dela Gothic One',sans-serif;font-size:15px;color:var(--ink)}
-.chat-sub{font-size:9px;color:var(--text-muted);font-family:'Space Mono',monospace}
+.chat-title{font-family:'Dela Gothic One',sans-serif;font-size:15px;color:#fff}
+.chat-sub{font-size:9px;color:rgba(255,255,255,.3);font-family:'Space Mono',monospace}
 .chat-msgs{display:flex;flex-direction:column;gap:8px;flex:1}
-.msg{max-width:85%;padding:9px 14px;border-radius:14px;font-size:11px;line-height:1.6;border:1.5px solid var(--ink)}
-.msg.bot{background:#fff;color:var(--ink);align-self:flex-start;border-radius:4px 14px 14px 14px}
-.msg.user{background:var(--ink);color:#fff;align-self:flex-end;border-radius:14px 4px 14px 14px}
+.msg{max-width:85%;padding:9px 14px;border-radius:14px;font-size:11px;line-height:1.6}
+.msg.bot{background:rgba(255,255,255,.06);color:rgba(255,255,255,.85);align-self:flex-start;border-radius:4px 14px 14px 14px;border:1px solid rgba(255,255,255,.08)}
+.msg.user{background:rgba(61,111,255,.35);color:#fff;align-self:flex-end;border-radius:14px 4px 14px 14px;border:1px solid rgba(61,111,255,.4)}
 .chat-input-row{
   display:flex;gap:8px;align-items:center;
-  background:#fff;border:2px solid var(--ink);
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
   border-radius:999px;padding:6px 8px 6px 16px;
 }
-.chat-placeholder{font-size:10px;color:var(--text-muted);flex:1}
+.chat-placeholder{font-size:10px;color:rgba(255,255,255,.25);flex:1}
 .chat-send{
   width:28px;height:28px;border-radius:50%;
-  background:var(--ink);
+  background:rgba(61,111,255,.5);
   display:flex;align-items:center;justify-content:center;
-  font-size:12px;flex-shrink:0;
+  font-size:12px;flex-shrink:0;color:#fff;
 }
 
 .work-body{padding:24px 28px}
@@ -969,9 +969,9 @@ footer{
 .vgen-clip.done{background:rgba(192,132,252,.2);border-color:rgba(192,132,252,.4);color:#c084fc}
 .vgen-clip.gen{background:rgba(124,58,237,.3);border-color:rgba(124,58,237,.5);color:#a78bfa;animation:blink 1.5s infinite}
 
-/* ─── レシート家計簿モック ─── */
+/* ─── レシート家計簿モック（ダーク） ─── */
 .mock-receipt{
-  background:#fffaf5;
+  background:#0d1510;
   width:100%;height:100%;
   padding:16px 20px;
   display:flex;flex-direction:column;gap:8px;
@@ -979,40 +979,42 @@ footer{
 }
 .receipt-header{
   display:flex;justify-content:space-between;align-items:center;
-  padding-bottom:10px;border-bottom:2px solid var(--ink);
+  padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08);
 }
-.receipt-logo{font-family:'Dela Gothic One',sans-serif;font-size:15px;letter-spacing:1px;color:var(--ink)}
+.receipt-logo{font-family:'Dela Gothic One',sans-serif;font-size:15px;letter-spacing:1px;color:#5cffc8}
 .receipt-badge{
-  background:var(--pop-green);color:#fff;
+  background:rgba(46,204,113,.2);color:#2ecc71;
   font-size:9px;font-weight:700;letter-spacing:1px;
   padding:3px 10px;border-radius:999px;
   font-family:'Space Mono',monospace;
+  border:1px solid rgba(46,204,113,.4);
 }
 .receipt-scan-row{
   display:flex;align-items:center;gap:10px;
-  background:#fff;border:2px dashed var(--border);
+  background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.12);
   border-radius:10px;padding:10px 12px;
 }
 .receipt-scan-icon{font-size:24px}
 .receipt-scan-info{flex:1}
-.receipt-scan-name{font-size:11px;font-weight:700;color:var(--ink)}
-.receipt-scan-sub{font-size:9px;color:var(--text-muted);font-family:'Space Mono',monospace}
+.receipt-scan-name{font-size:11px;font-weight:700;color:rgba(255,255,255,.85)}
+.receipt-scan-sub{font-size:9px;color:rgba(255,255,255,.3);font-family:'Space Mono',monospace}
 .receipt-items{display:flex;flex-direction:column;gap:4px;flex:1}
 .receipt-item{
   display:flex;align-items:center;gap:8px;
   padding:6px 10px;
-  background:#fff;border-radius:8px;
-  border:1px solid var(--border);
+  background:rgba(255,255,255,.03);border-radius:8px;
+  border:1px solid rgba(255,255,255,.07);
 }
 .receipt-cat{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .cat-food{background:#ff7043}
 .cat-daily{background:#3d6fff}
 .cat-other{background:#888}
-.receipt-item-name{font-size:10px;color:var(--ink);flex:1;font-weight:500}
-.receipt-item-price{font-size:11px;font-weight:700;color:var(--ink);font-family:'Space Mono',monospace}
+.receipt-item-name{font-size:10px;color:rgba(255,255,255,.75);flex:1;font-weight:500}
+.receipt-item-price{font-size:11px;font-weight:700;color:#fff;font-family:'Space Mono',monospace}
 .receipt-total{
   display:flex;justify-content:space-between;align-items:center;
-  background:var(--ink);color:#fff;
+  background:rgba(92,255,200,.12);color:#5cffc8;
+  border:1px solid rgba(92,255,200,.3);
   border-radius:8px;padding:8px 12px;
 }
 .receipt-total-label{font-size:10px;opacity:.6;font-family:'Space Mono',monospace}
@@ -1150,6 +1152,29 @@ footer{
     </div>
   </div>
 </div>
+</div>
+
+<!-- プロフィール -->
+<div style="background:var(--pop-yellow);border-bottom:3px solid var(--ink);padding:0 40px 72px">
+  <div style="max-width:520px;margin:0 auto;position:relative">
+    <div class="profile-card">
+      <div class="profile-avatar">
+        <img src="figure/iida.jpg" alt="飯田 祐基">
+      </div>
+      <div class="profile-name">飯田 祐基</div>
+      <div class="profile-role">CEO / AI Engineer @ IDEOLOGY</div>
+      <div class="profile-tags">
+        <div class="ptag y">AIエンジニア</div>
+        <div class="ptag r">SNSインフルエンサー</div>
+        <div class="ptag b">SNS運用</div>
+        <div class="ptag g">実績多数</div>
+      </div>
+      <div class="profile-quote">
+        「難しいことは全部僕がやります。あなたはアイデアだけ持ってきてください。最短で形にします。」
+      </div>
+    </div>
+    <div class="float-badge float-badge-2">💬 丸投げOK！</div>
+  </div>
 </div>
 
 <!-- ティッカー -->
@@ -1559,11 +1584,6 @@ footer{
           <div class="work-tag-pill">RECEIPT AI</div>
           <div class="work-title">レシート自動家計簿システム</div>
           <div class="work-desc">スマホでレシートを撮影するだけ。AIがOCRで金額・店名・品目を自動認識し、カテゴリ別に家計簿へ即登録。グラフも自動生成で支出管理がゼロ手間に。</div>
-          <div class="tech-chips">
-            <span class="chip">OCR</span>
-            <span class="chip">GPT-4o</span>
-            <span class="chip">Notion API</span>
-          </div>
         </div>
       </div>
 
