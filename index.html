@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>最短1日納品｜AIで作るなら僕に頼んで</title>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans+JP:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --cream:#faf8f3;
+  --ink:#111111;
+  --pop-yellow:#FFE03D;
+  --pop-red:#FF3D3D;
+  --pop-blue:#3D6FFF;
+  --pop-green:#2ECC71;
+  --pop-orange:#FF7043;
+  --surface:#ffffff;
+  --border:#e8e4dc;
+  --text-muted:#888;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Sans JP',sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  overflow-x:hidden;
+}
+
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9999;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:var(--pop-yellow);
+  border-bottom:3px solid var(--ink);
+  padding:0 32px;
+  height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{
+  font-family:'Dela Gothic One',sans-serif;
+  font-size:20px;letter-spacing:1px;
+  color:var(--ink);
+}
+.nav-badge{
+  background:var(--ink);color:var(--pop-yellow);
+  padding:6px 14px;
+  font-size:11px;font-weight:900;letter-spacing:2px;
+  border-radius:999px;
+  font-family:'Space Mono',monospace;
+}
+.nav-cta{
+  background:var(--pop-red);color:#fff;
+  padding:10px 22px;
+  font-size:13px;font-weight:700;letter-spacing:1px;
+  border:2px solid var(--ink);
+  border-radius:999px;
+  cursor:pointer;transition:all .15s;
+  text-decoration:none;display:inline-block;
+  box-shadow:3px 3px 0 var(--ink);
+}
+.nav-cta:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink)}
+.nav-cta:active{transform:translate(0,0);box-shadow:0 0 0 var(--ink)}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  background:var(--pop-yellow);
+  border-bottom:3px solid var(--ink);
+  padding:100px 40px 80px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:60px;
+  max-width:800px;
+  align-items:center;
+  max-width:1200px;
+  margin:0 auto;
+  position:relative;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--ink);color:var(--pop-yellow);
+  padding:6px 16px;border-radius:999px;
+  font-family:'Space Mono',monospace;
+  font-size:11px;font-weight:700;letter-spacing:2px;
+  margin-bottom:28px;
+}
+.hero-eyebrow::before{content:'●';color:var(--pop-red);animation:blink 1s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+.hero-h1{
+  font-family:'Dela Gothic One',sans-serif;
+  font-size:clamp(44px,6.5vw,82px);
+  line-height:1.05;
+  letter-spacing:-1px;
+  color:var(--ink);
+  margin-bottom:24px;
+}
+.hero-h1 .stroke{
+  -webkit-text-stroke:3px var(--ink);
+  color:transparent;
+}
+.hero-h1 .accent{color:var(--pop-red)}
+
+.hero-sub{
+  font-size:17px;color:rgba(17,17,17,.7);
+  line-height:1.8;margin-bottom:40px;
+  font-weight:400;max-width:480px;
+}
+
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:48px}
+.btn-hero-main{
+  background:var(--pop-red);color:#fff;
+  padding:16px 36px;
+  font-size:15px;font-weight:700;letter-spacing:1px;
+  border:2px solid var(--ink);border-radius:999px;
+  cursor:pointer;transition:all .15s;
+  text-decoration:none;display:inline-block;
+  box-shadow:4px 4px 0 var(--ink);
+}
+.btn-hero-main:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.btn-hero-sub{
+  background:transparent;color:var(--ink);
+  padding:16px 28px;
+  font-size:14px;font-weight:700;
+  border:2px solid var(--ink);border-radius:999px;
+  cursor:pointer;transition:all .15s;
+  text-decoration:none;display:inline-block;
+  box-shadow:4px 4px 0 var(--ink);
+}
+.btn-hero-sub:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+
+.hero-stats{
+  display:flex;gap:0;
+  border:2px solid var(--ink);
+  border-radius:16px;
+  overflow:hidden;
+  background:#fff;
+}
+.stat{
+  flex:1;padding:20px 16px;text-align:center;
+  border-right:2px solid var(--ink);
+}
+.stat:last-child{border-right:none}
+.stat-n{
+  font-family:'Dela Gothic One',sans-serif;
+  font-size:36px;color:var(--pop-red);
+  line-height:1;
+}
+.stat-u{font-size:14px;color:var(--ink)}
+.stat-l{font-size:11px;color:var(--text-muted);margin-top:4px;font-weight:500}
+
+/* HERO RIGHT */
+.hero-right{position:relative}
+.profile-card{
+  background:#fff;
+  border:3px solid var(--ink);
+  border-radius:24px;
+  padding:32px;
+  box-shadow:8px 8px 0 var(--ink);
+  position:relative;
+}
+.profile-avatar{
+  width:120px;height:120px;
+  border-radius:50%;
+  border:3px solid var(--ink);
+  background:linear-gradient(135deg,#ffd3d3,#ffe8a0);
+  margin:0 auto 20px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:56px;
+  overflow:hidden;
+  position:relative;
+}
+.profile-avatar img{
+  width:100%;height:100%;object-fit:cover;
+  position:absolute;inset:0;
+}
+.profile-name{
+  font-family:'Dela Gothic One',sans-serif;
+  font-size:22px;text-align:center;margin-bottom:4px;
+}
+.profile-role{
+  font-size:12px;color:var(--text-muted);
+  text-align:center;margin-bottom:20px;
+  font-family:'Space Mono',monospace;letter-spacing:1px;
+}
+.profile-tags{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+  margin-bottom:20px;
+}
+.ptag{
+  padding:6px 14px;
+  border-radius:999px;
+  font-size:12px;font-weight:700;
+  border:2px solid var(--ink);
+}
+.ptag.y{background:var(--pop-yellow)}
+.ptag.r{background:#ffd3d3}
+.ptag.b{background:#d3e4ff}
+.ptag.g{background:#d3f5e8}
+
+.profile-quote{
+  background:var(--cream);
+  border-radius:12px;
+  padding:16px 18px;
+  font-size:14px;line-height:1.7;
+  color:rgba(17,17,17,.8);
+  border-left:4px solid var(--pop-red);
+  font-style:italic;
+}
+
+.float-badge{
+  position:absolute;
+  background:var(--pop-red);color:#fff;
+  font-family:'Dela Gothic One',sans-serif;
+  font-size:13px;
+  padding:10px 16px;
+  border:2px solid var(--ink);
+  border-radius:12px;
+  box-shadow:3px 3px 0 var(--ink);
+  white-space:nowrap;
+}
+.float-badge-1{top:-20px;right:-20px;background:var(--pop-blue);transform:rotate(6deg)}
+.float-badge-2{bottom:-16px;left:-16px;background:var(--pop-green);color:#fff;transform:rotate(-4deg)}
+
+/* SECTION 共通 */
+.section{padding:100px 40px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-eyebrow{
+  font-family:'Space Mono',monospace;
+  font-size:11px;letter-spacing:3px;
+  color:var(--text-muted);font-weight:700;
+  margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-eyebrow::before{content:'';width:20px;height:2px;background:var(--pop-red)}
+.section-title{
+  font-family:'Dela Gothic One',sans-serif;
+  font-size:clamp(32px,4.5vw,58px);
+  line-height:1.1;
+  margin-bottom:48px;
+  letter-spacing:-0.5px;
+}
+.section-title .hl{color:var(--pop-red)}
+
+/* EXAMPLES カテゴリ付き */
+.examples-section{
+  background:#fff;
+  border-top:3px solid var(--ink);
+  border-bottom:3px solid var(--ink);
+}
+.cat-block{margin-bottom:56px}
+.cat-block:last-child{margin-bottom:0}
+.cat-label{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Dela Gothic One',sans-serif;
+  font-size:18px;
+  border:2px solid var(--ink);
+  border-radius:999px;
+  padding:10px 24px;
+  margin-bottom:24px;
+}
+.cat-label.sns{background:var(--pop-blue);color:#fff}
+.cat-label.biz{background:var(--pop-yellow);color:var(--ink)}
+.cat-label.cam{background:var(--pop-red);color:#fff}
+.examples-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:16px;
+}
+.ex-card{
+  border:2px solid var(--ink);
+  border-radius:20px;
+  padding:24px 20px;
+  background:var(--cream);
+  transition:all .15s;
+  cursor:default;
+  position:relative;
+  overflow:hidden;
+}
+.ex-card::before{
+  content:'';
+  position:absolute;inset:0;
+  transform:translateY(100%);
+  transition:transform .2s ease;
+  z-index:0;
+}
+.cat-block.sns .ex-card::before{background:rgba(61,111,255,.12)}
+.cat-block.biz .ex-card::before{background:var(--pop-yellow)}
+.cat-block.cam .ex-card::before{background:rgba(255,61,61,.1)}
+.ex-card:hover::before{transform:translateY(0)}
+.ex-card:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--ink)}
+.ex-card>*{position:relative;z-index:1}
+.ex-icon{
+  font-size:32px;
+  margin-bottom:10px;display:block;
+}
+.ex-title{
+  font-size:14px;font-weight:700;
+  margin-bottom:6px;line-height:1.4;
+}
+.ex-desc{font-size:11px;color:var(--text-muted);line-height:1.7}
+
+/* WORKS */
+.works-section{background:var(--cream)}
+.works-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(480px,1fr));
+  gap:24px;
+}
+.work-card{
+  border:3px solid var(--ink);
+  border-radius:24px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:6px 6px 0 var(--ink);
+  transition:all .15s;
+}
+.work-card:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--ink)}
+
+.work-screen{
+  height:280px;
+  border-bottom:3px solid var(--ink);
+  overflow:hidden;
+  position:relative;
+}
+
+/* ─── SNS自動投稿 モック ─── */
+.mock-sns{
+  background:#0a0c14;
+  width:100%;height:100%;
+  padding:20px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.mock-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-bottom:12px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.mock-logo{
+  font-family:'Dela Gothic One',sans-serif;
+  font-size:16px;letter-spacing:2px;
+  color:#fff;
+}
+.mock-live{
+  display:flex;align-items:center;gap:6px;
+  font-size:11px;color:#5cffc8;
+  font-family:'Space Mono',monospace;
+}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#5cffc8;animation:blink 1.2s infinite}
+
+.post-row{
+  display:flex;align-items:center;gap:12px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:10px;
+  padding:10px 12px;
+  animation:rowIn .5s ease both;
+}
+.post-row:nth-child(2){animation-delay:.1s}
+.post-row:nth-child(3){animation-delay:.2s}
+.post-row:nth-child(4){animation-delay:.3s}
+@keyframes rowIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+.platform-icon{
+  width:30px;height:30px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;flex-shrink:0;
+  border:1px solid rgba(255,255,255,.1);
+}
+.pi-ig{background:linear-gradient(135deg,#f09433,#dc2743,#bc1888)}
+.pi-tt{background:#000}
+.pi-x{background:#000;border-color:#333}
+.pi-yt{background:#ff0000}
+.post-info{flex:1;min-width:0}
+.post-name{font-size:10px;color:rgba(255,255,255,.8);font-weight:500;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.post-meta{font-size:9px;color:rgba(255,255,255,.3);margin-top:2px;font-family:'Space Mono',monospace}
+.status-pill{
+  padding:3px 10px;border-radius:999px;
+  font-size:9px;font-weight:700;letter-spacing:1px;
+  font-family:'Space Mono',monospace;flex-shrink:0;
+}
+.s-done{background:rgba(92,255,200,.15);color:#5cffc8}
+.s-sched{background:rgba(92,111,255,.15);color:#5c8fff}
+.s-proc{background:rgba(255,200,50,.15);color:#ffc832}
+
+/* ─── 切り抜き動画モック ─── */
+.mock-clip{
+  background:#0d0d18;
+  width:100%;height:100%;
+  padding:20px;
+  display:flex;flex-direction:column;gap:12px;
+}
+.clip-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08);
+}
+.clip-logo{
+  font-family:'Dela Gothic One',sans-serif;
+  font-size:15px;letter-spacing:2px;color:#fff;
+}
+.clip-badge{
+  background:rgba(255,61,61,.2);color:#ff6b6b;
+  font-size:9px;font-weight:700;letter-spacing:1px;
+  padding:3px 10px;border-radius:999px;
+  font-family:'Space Mono',monospace;
+  border:1px solid rgba(255,61,61,.3);
+  animation:blink 2s infinite;
+}
+.timeline-bar{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:8px;padding:10px 12px;
+}
+.tl-label{font-size:9px;color:rgba(255,255,255,.3);letter-spacing:1px;font-family:'Space Mono',monospace;margin-bottom:8px}
+.tl-track{position:relative;height:8px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden}
+.tl-fill{
+  position:absolute;left:0;top:0;height:100%;
+  background:linear-gradient(90deg,#ff3d3d,#ff6b00);
+  border-radius:999px;
+  animation:tlfill 3s ease-in-out infinite alternate;
+}
+@keyframes tlfill{from{width:20%}to{width:72%}}
+.tl-segments{
+  display:flex;gap:6px;margin-top:8px;
+}
+.tl-seg{
+  height:28px;border-radius:6px;
+  border:1px solid rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:8px;color:rgba(255,255,255,.5);font-family:'Space Mono',monospace;
+  flex:1;
+}
+.tl-seg.hot{background:rgba(255,61,61,.25);border-color:rgba(255,61,61,.4);color:#ff8888}
+.export-row{
+  background:linear-gradient(135deg,rgba(255,61,61,.7),rgba(255,100,0,.7));
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:8px;padding:10px 12px;
+  font-size:11px;font-weight:700;color:#fff;
+  display:flex;align-items:center;justify-content:space-between;
+  letter-spacing:1px;
+}
+.export-count{
+  font-family:'Dela Gothic One',sans-serif;
+  font-size:20px;
+}
+
+/* ─── 企画コンセプト動画モック ─── */
+.mock-concept{
+  background:#08100f;
+  width:100%;height:100%;
+  padding:20px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.concept-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08);
+}
+.concept-logo{
+  font-family:'Dela Gothic One',sans-serif;
+  font-size:14px;letter-spacing:2px;color:#5cffc8;
+}
+.concept-mode{
+  font-size:9px;letter-spacing:2px;color:rgba(92,255,200,.5);
+  font-family:'Space Mono',monospace;
+}
+.concept-prompt{
+  background:rgba(92,255,200,.05);
+  border:1px solid rgba(92,255,200,.2);
+  border-radius:8px;padding:10px 12px;
+  font-size:10px;color:rgba(200,255,240,.7);
+  line-height:1.7;
+}
+.concept-cards{
+  display:flex;gap:8px;flex:1;
+}
+.c-card{
+  flex:1;background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:8px;padding:10px;
+  display:flex;flex-direction:column;gap:6px;
+}
+.c-card.active{
+  background:rgba(92,255,200,.08);
+  border-color:rgba(92,255,200,.3);
+}
+.c-num{font-size:8px;color:rgba(255,255,255,.25);font-family:'Space Mono',monospace}
+.c-title{font-size:10px;color:rgba(255,255,255,.8);font-weight:700;line-height:1.3}
+.c-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:auto}
+.c-tag{font-size:7px;padding:2px 6px;border-radius:999px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.4);font-family:'Space Mono',monospace}
+.c-tag.g{background:rgba(92,255,200,.15);color:#5cffc8}
+
+/* ─── 寝返り検知モック ─── */
+.mock-baby{
+  background:#0c0c10;
+  width:100%;height:100%;
+  padding:20px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.baby-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08);
+}
+.baby-logo{font-family:'Dela Gothic One',sans-serif;font-size:14px;letter-spacing:2px;color:#fff}
+.baby-status{
+  display:flex;align-items:center;gap:6px;
+  font-size:10px;color:#5cffc8;font-family:'Space Mono',monospace;
+}
+.cam-view{
+  flex:1;
+  background:linear-gradient(135deg,#1a1a28,#0f1820);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;
+  position:relative;
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  font-size:40px;
+}
+.cam-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent 60%,rgba(92,255,200,.05));
+}
+.cam-box{
+  position:absolute;
+  border:2px solid #5cffc8;
+  border-radius:4px;
+  width:100px;height:70px;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  animation:cambox 2s ease-in-out infinite;
+}
+@keyframes cambox{0%,100%{border-color:#5cffc8;box-shadow:0 0 8px rgba(92,255,200,.4)}50%{border-color:#ffe03d;box-shadow:0 0 12px rgba(255,224,61,.5)}}
+.baby-alert{
+  background:rgba(92,255,200,.1);
+  border:1px solid rgba(92,255,200,.3);
+  border-radius:8px;padding:10px 12px;
+  font-size:11px;font-weight:700;color:#5cffc8;
+  display:flex;align-items:center;gap:8px;
+}
+.baby-alert.warn{
+  background:rgba(255,224,61,.1);
+  border-color:rgba(255,224,61,.3);
+  color:#ffe03d;
+  animation:alertpulse 1.5s ease-in-out infinite;
+}
+@keyframes alertpulse{0%,100%{opacity:1}50%{opacity:.6}}
+
+/* ─── 寝返り検知モック（画像ベース） ─── */
+.mock-baby2{
+  background:#0e1117;
+  width:100%;height:100%;
+  padding:18px 20px;
+  display:flex;flex-direction:column;gap:8px;
+  font-family:'Noto Sans JP',sans-serif;
+}
+.baby2-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-bottom:12px;
+  border-bottom:1px solid rgba(255,255,255,.1);
+  margin-bottom:2px;
+}
+.baby2-logo{
+  font-family:'Dela Gothic One',sans-serif;
+  font-size:15px;letter-spacing:2px;color:#fff;
+}
+.baby2-status{
+  display:flex;align-items:center;gap:6px;
+  font-size:11px;color:#5cffc8;
+  font-family:'Space Mono',monospace;
+}
+.live-dot2{
+  width:6px;height:6px;border-radius:50%;
+  background:#5cffc8;animation:blink 1.2s infinite;
+}
+.baby2-row{
+  display:flex;align-items:center;gap:12px;
+  border-radius:10px;
+  padding:10px 12px;
+  border:1px solid rgba(255,255,255,.07);
+  background:rgba(255,255,255,.03);
+}
+.baby2-row.danger{
+  background:rgba(255,61,61,.08);
+  border-color:rgba(255,61,61,.25);
+}
+.baby2-icon{
+  width:34px;height:34px;border-radius:8px;
+  background:rgba(255,255,255,.06);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+  border:1px solid rgba(255,255,255,.08);
+}
+.line-icon{
+  background:#06c755;
+  font-size:9px;font-weight:900;color:#fff;
+  letter-spacing:0;border-color:#06c755;
+}
+.mail-icon{
+  background:#3b82f6;
+  font-size:14px;border-color:#3b82f6;
+}
+.cam-icon{
+  background:rgba(255,255,255,.08);
+  font-size:16px;
+}
+.baby2-info{flex:1;min-width:0}
+.baby2-time{
+  font-size:11px;color:rgba(255,255,255,.85);
+  font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.baby2-sub{
+  font-size:9px;color:rgba(255,255,255,.4);
+  margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.baby2-badge{
+  padding:4px 10px;border-radius:999px;
+  font-size:9px;font-weight:700;letter-spacing:1px;
+  font-family:'Space Mono',monospace;flex-shrink:0;
+}
+.baby2-badge.watch{background:rgba(61,111,255,.2);color:#7099ff;border:1px solid rgba(61,111,255,.3)}
+.baby2-badge.alert{background:rgba(255,61,61,.25);color:#ff7070;border:1px solid rgba(255,61,61,.4)}
+.baby2-badge.sent{background:rgba(6,199,85,.15);color:#06c755;border:1px solid rgba(6,199,85,.3)}
+.baby2-badge.ok{background:rgba(46,204,113,.15);color:#2ecc71;border:1px solid rgba(46,204,113,.3)}
+
+/* ─── FAQ チャットボットモック ─── */
+.mock-chat{
+  background:#f5f7ff;
+  width:100%;height:100%;
+  padding:16px 20px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.chat-header{
+  display:flex;align-items:center;gap:12px;
+  padding-bottom:12px;border-bottom:2px solid var(--ink);
+}
+.chat-icon{
+  width:36px;height:36px;border-radius:10px;
+  background:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;
+  border:2px solid var(--ink);
+}
+.chat-title{font-family:'Dela Gothic One',sans-serif;font-size:15px;color:var(--ink)}
+.chat-sub{font-size:9px;color:var(--text-muted);font-family:'Space Mono',monospace}
+.chat-msgs{display:flex;flex-direction:column;gap:8px;flex:1}
+.msg{max-width:85%;padding:9px 14px;border-radius:14px;font-size:11px;line-height:1.6;border:1.5px solid var(--ink)}
+.msg.bot{background:#fff;color:var(--ink);align-self:flex-start;border-radius:4px 14px 14px 14px}
+.msg.user{background:var(--ink);color:#fff;align-self:flex-end;border-radius:14px 4px 14px 14px}
+.chat-input-row{
+  display:flex;gap:8px;align-items:center;
+  background:#fff;border:2px solid var(--ink);
+  border-radius:999px;padding:6px 8px 6px 16px;
+}
+.chat-placeholder{font-size:10px;color:var(--text-muted);flex:1}
+.chat-send{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;flex-shrink:0;
+}
+
+.work-body{padding:24px 28px}
+.work-tag-pill{
+  display:inline-block;
+  background:var(--pop-yellow);color:var(--ink);
+  padding:5px 14px;border-radius:999px;
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  border:2px solid var(--ink);
+  margin-bottom:14px;
+}
+.work-title{
+  font-family:'Dela Gothic One',sans-serif;
+  font-size:20px;margin-bottom:10px;line-height:1.3;
+}
+.work-desc{
+  font-size:13px;color:rgba(17,17,17,.65);
+  line-height:1.8;margin-bottom:16px;font-weight:400;
+}
+.tech-chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  background:var(--cream);
+  border:1.5px solid var(--border);
+  border-radius:999px;
+  padding:4px 12px;
+  font-size:11px;font-weight:500;color:var(--ink);
+  font-family:'Space Mono',monospace;
+}
+
+/* FLOW */
+.flow-section{
+  background:var(--ink);color:#fff;
+  border-top:3px solid var(--ink);
+  border-bottom:3px solid var(--ink);
+}
+.flow-section .section-eyebrow{color:rgba(255,255,255,.4)}
+.flow-section .section-eyebrow::before{background:var(--pop-yellow)}
+.flow-section .section-title{color:#fff}
+.flow-section .section-title .hl{color:var(--pop-yellow)}
+
+.flow-track{
+  display:flex;gap:0;
+  border:2px solid rgba(255,255,255,.15);
+  border-radius:20px;
+  overflow:hidden;
+}
+.flow-step{
+  flex:1;min-width:140px;
+  padding:40px 24px;
+  border-right:2px solid rgba(255,255,255,.1);
+  position:relative;
+  transition:background .2s;
+}
+.flow-step:hover{background:rgba(255,255,255,.05)}
+.flow-step:last-child{border-right:none}
+.flow-num{
+  font-family:'Space Mono',monospace;
+  font-size:11px;color:rgba(255,255,255,.3);
+  margin-bottom:12px;letter-spacing:2px;
+}
+.flow-icon{font-size:32px;margin-bottom:12px;display:block}
+.flow-title{
+  font-family:'Dela Gothic One',sans-serif;
+  font-size:16px;color:#fff;margin-bottom:8px;
+}
+.flow-desc{font-size:12px;color:rgba(255,255,255,.5);line-height:1.7}
+.flow-pill{
+  display:inline-block;
+  background:var(--pop-yellow);color:var(--ink);
+  font-size:10px;font-weight:700;letter-spacing:1px;
+  padding:4px 12px;border-radius:999px;
+  margin-top:10px;
+  font-family:'Space Mono',monospace;
+}
+
+/* PRICING */
+.price-section{background:#fff;border-top:3px solid var(--ink)}
+.price-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:24px;
+}
+.price-card{
+  border:3px solid var(--ink);
+  border-radius:24px;
+  padding:44px 36px;
+  position:relative;
+  transition:all .15s;
+  background:var(--cream);
+}
+.price-card:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--ink)}
+.price-card.hot{background:var(--pop-yellow)}
+.hot-badge{
+  position:absolute;top:-16px;left:50%;transform:translateX(-50%);
+  background:var(--pop-red);color:#fff;
+  font-size:11px;font-weight:700;letter-spacing:2px;
+  padding:6px 18px;border-radius:999px;
+  border:2px solid var(--ink);
+  white-space:nowrap;
+  font-family:'Space Mono',monospace;
+}
+.price-plan{
+  font-family:'Space Mono',monospace;
+  font-size:12px;color:var(--text-muted);
+  letter-spacing:2px;margin-bottom:8px;font-weight:700;
+}
+.price-num{
+  font-family:'Dela Gothic One',sans-serif;
+  font-size:62px;color:var(--ink);
+  line-height:1;margin-bottom:4px;
+}
+.price-unit{font-size:18px}
+.price-period{font-size:13px;color:var(--text-muted);margin-bottom:28px}
+.price-label{font-size:16px;font-weight:700;margin-bottom:16px}
+.price-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+.price-list li{
+  font-size:13px;color:rgba(17,17,17,.75);
+  display:flex;align-items:flex-start;gap:10px;
+  line-height:1.5;
+}
+.price-list li::before{content:'✔';color:var(--pop-green);font-size:12px;margin-top:2px;flex-shrink:0}
+.price-note-box{
+  margin-top:32px;padding-top:24px;
+  border-top:2px solid var(--border);
+  font-size:12px;color:var(--text-muted);
+  line-height:1.9;
+}
+
+/* VOICE SECTION */
+.voice-section{
+  background:var(--pop-red);
+  border-top:3px solid var(--ink);
+  border-bottom:3px solid var(--ink);
+}
+.voice-inner{
+  max-width:800px;margin:0 auto;
+  text-align:center;
+}
+.voice-quote{
+  font-family:'Dela Gothic One',sans-serif;
+  font-size:clamp(28px,4.5vw,52px);
+  color:#fff;
+  line-height:1.2;
+  margin-bottom:24px;
+  letter-spacing:-0.5px;
+}
+.voice-sub{
+  font-size:17px;color:rgba(255,255,255,.8);
+  line-height:1.8;margin-bottom:48px;font-weight:300;
+}
+.voice-sign{
+  font-family:'Dela Gothic One',sans-serif;
+  font-size:20px;color:#fff;
+  display:flex;align-items:center;justify-content:center;gap:16px;
+}
+.sign-avatar{
+  width:56px;height:56px;border-radius:50%;
+  border:3px solid #fff;
+  background:linear-gradient(135deg,#ffd3d3,#ffe8a0);
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;overflow:hidden;position:relative;
+}
+.sign-avatar img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+
+/* FAQ */
+.faq-section{background:var(--cream);border-top:3px solid var(--ink)}
+.faq-list{max-width:800px}
+.faq-item{border-bottom:2px solid var(--ink)}
+.faq-q{
+  padding:24px 0;
+  display:flex;justify-content:space-between;align-items:center;
+  gap:16px;cursor:pointer;
+}
+.faq-q-text{font-size:16px;font-weight:700}
+.faq-icon{
+  width:32px;height:32px;border-radius:50%;
+  border:2px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;font-weight:700;
+  flex-shrink:0;transition:all .2s;
+  background:var(--pop-yellow);
+}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a-text{padding-bottom:24px;font-size:14px;color:rgba(17,17,17,.7);line-height:1.9;font-weight:400}
+.faq-item.open .faq-a{max-height:200px}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--pop-red);color:#fff;border-color:var(--pop-red)}
+
+/* CTA */
+.cta-section{
+  background:var(--ink);
+  padding:120px 40px;
+  text-align:center;
+}
+.cta-inner{max-width:700px;margin:0 auto}
+.cta-tag{
+  display:inline-block;
+  background:var(--pop-yellow);color:var(--ink);
+  padding:6px 18px;border-radius:999px;
+  font-family:'Space Mono',monospace;
+  font-size:11px;font-weight:700;letter-spacing:2px;
+  margin-bottom:32px;
+}
+.cta-h{
+  font-family:'Dela Gothic One',sans-serif;
+  font-size:clamp(40px,6vw,76px);
+  color:#fff;line-height:1.05;
+  margin-bottom:24px;letter-spacing:-1px;
+}
+.cta-h span{color:var(--pop-yellow)}
+.cta-desc{
+  font-size:17px;color:rgba(255,255,255,.6);
+  margin-bottom:48px;line-height:1.8;font-weight:300;
+}
+.btn-cta{
+  display:inline-block;
+  background:var(--pop-yellow);color:var(--ink);
+  padding:20px 56px;
+  font-size:16px;font-weight:700;letter-spacing:2px;
+  border:2px solid var(--pop-yellow);
+  border-radius:999px;
+  cursor:pointer;transition:all .15s;
+  text-decoration:none;
+  box-shadow:5px 5px 0 rgba(255,255,255,.2);
+}
+.btn-cta:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 rgba(255,255,255,.2)}
+
+/* FOOTER */
+footer{
+  background:var(--ink);
+  border-top:3px solid rgba(255,255,255,.1);
+  padding:40px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:16px;
+}
+.footer-logo{
+  font-family:'Dela Gothic One',sans-serif;
+  font-size:22px;color:var(--pop-yellow);
+}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.3);font-family:'Space Mono',monospace}
+
+/* ─── 動画生成システムモック ─── */
+.mock-vgen{
+  background:#0a0010;
+  width:100%;height:100%;
+  padding:18px 20px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.vgen-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08);
+}
+.vgen-logo{
+  font-family:'Dela Gothic One',sans-serif;
+  font-size:14px;letter-spacing:2px;color:#c084fc;
+}
+.vgen-status{
+  display:flex;align-items:center;gap:6px;
+  font-size:9px;color:#c084fc;font-family:'Space Mono',monospace;
+}
+.vgen-preview{
+  flex:1;
+  background:linear-gradient(135deg,#1a0830,#0d0515);
+  border:1px solid rgba(192,132,252,.2);
+  border-radius:10px;
+  position:relative;
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.vgen-play{
+  width:52px;height:52px;border-radius:50%;
+  background:rgba(192,132,252,.3);
+  border:2px solid rgba(192,132,252,.7);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;color:#fff;
+  animation:vpulse 2s ease-in-out infinite;
+}
+@keyframes vpulse{0%,100%{box-shadow:0 0 0 0 rgba(192,132,252,.4)}50%{box-shadow:0 0 0 14px rgba(192,132,252,0)}}
+.vgen-frame-dots{
+  position:absolute;bottom:8px;left:0;right:0;
+  display:flex;justify-content:center;gap:4px;
+}
+.vgen-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2)}
+.vgen-dot.active{background:#c084fc;width:16px;border-radius:999px}
+.vgen-bar-wrap{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:8px;padding:10px 12px;
+}
+.vgen-bar-label{font-size:9px;color:rgba(255,255,255,.3);letter-spacing:1px;font-family:'Space Mono',monospace;margin-bottom:6px}
+.vgen-bar-track{height:6px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden}
+.vgen-bar-fill{
+  height:100%;
+  background:linear-gradient(90deg,#7c3aed,#c084fc);
+  border-radius:999px;
+  animation:vfill 4s ease-in-out infinite alternate;
+}
+@keyframes vfill{from{width:30%}to{width:85%}}
+.vgen-clips{display:flex;gap:6px;margin-top:8px}
+.vgen-clip{
+  flex:1;height:26px;border-radius:6px;
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.04);
+  display:flex;align-items:center;justify-content:center;
+  font-size:7px;color:rgba(255,255,255,.35);font-family:'Space Mono',monospace;
+}
+.vgen-clip.done{background:rgba(192,132,252,.2);border-color:rgba(192,132,252,.4);color:#c084fc}
+.vgen-clip.gen{background:rgba(124,58,237,.3);border-color:rgba(124,58,237,.5);color:#a78bfa;animation:blink 1.5s infinite}
+
+/* ─── レシート家計簿モック ─── */
+.mock-receipt{
+  background:#fffaf5;
+  width:100%;height:100%;
+  padding:16px 20px;
+  display:flex;flex-direction:column;gap:8px;
+  font-family:'Noto Sans JP',sans-serif;
+}
+.receipt-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-bottom:10px;border-bottom:2px solid var(--ink);
+}
+.receipt-logo{font-family:'Dela Gothic One',sans-serif;font-size:15px;letter-spacing:1px;color:var(--ink)}
+.receipt-badge{
+  background:var(--pop-green);color:#fff;
+  font-size:9px;font-weight:700;letter-spacing:1px;
+  padding:3px 10px;border-radius:999px;
+  font-family:'Space Mono',monospace;
+}
+.receipt-scan-row{
+  display:flex;align-items:center;gap:10px;
+  background:#fff;border:2px dashed var(--border);
+  border-radius:10px;padding:10px 12px;
+}
+.receipt-scan-icon{font-size:24px}
+.receipt-scan-info{flex:1}
+.receipt-scan-name{font-size:11px;font-weight:700;color:var(--ink)}
+.receipt-scan-sub{font-size:9px;color:var(--text-muted);font-family:'Space Mono',monospace}
+.receipt-items{display:flex;flex-direction:column;gap:4px;flex:1}
+.receipt-item{
+  display:flex;align-items:center;gap:8px;
+  padding:6px 10px;
+  background:#fff;border-radius:8px;
+  border:1px solid var(--border);
+}
+.receipt-cat{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.cat-food{background:#ff7043}
+.cat-daily{background:#3d6fff}
+.cat-other{background:#888}
+.receipt-item-name{font-size:10px;color:var(--ink);flex:1;font-weight:500}
+.receipt-item-price{font-size:11px;font-weight:700;color:var(--ink);font-family:'Space Mono',monospace}
+.receipt-total{
+  display:flex;justify-content:space-between;align-items:center;
+  background:var(--ink);color:#fff;
+  border-radius:8px;padding:8px 12px;
+}
+.receipt-total-label{font-size:10px;opacity:.6;font-family:'Space Mono',monospace}
+.receipt-total-num{font-family:'Dela Gothic One',sans-serif;font-size:18px}
+
+/* CONTACT FORM */
+.contact-form{
+  background:rgba(255,255,255,.05);
+  border:2px solid rgba(255,255,255,.15);
+  border-radius:24px;
+  padding:40px;
+  margin-top:40px;
+  text-align:left;
+}
+.form-group{margin-bottom:20px}
+.form-label{
+  display:block;
+  font-size:11px;font-weight:700;
+  color:rgba(255,255,255,.6);
+  letter-spacing:2px;
+  font-family:'Space Mono',monospace;
+  margin-bottom:8px;
+}
+.form-input,.form-textarea{
+  width:100%;
+  background:rgba(255,255,255,.08);
+  border:2px solid rgba(255,255,255,.15);
+  border-radius:12px;
+  padding:14px 18px;
+  color:#fff;
+  font-size:14px;
+  font-family:'Noto Sans JP',sans-serif;
+  transition:border-color .15s;
+  outline:none;
+}
+.form-input::placeholder,.form-textarea::placeholder{color:rgba(255,255,255,.3)}
+.form-input:focus,.form-textarea:focus{border-color:var(--pop-yellow)}
+.form-textarea{resize:vertical;min-height:120px}
+.btn-form-submit{
+  display:block;width:100%;
+  background:var(--pop-yellow);color:var(--ink);
+  padding:18px 32px;
+  font-size:16px;font-weight:700;letter-spacing:1px;
+  border:none;
+  border-radius:999px;
+  cursor:pointer;transition:all .15s;
+  text-align:center;
+  box-shadow:5px 5px 0 rgba(255,255,255,.15);
+  margin-top:8px;
+}
+.btn-form-submit:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 rgba(255,255,255,.15)}
+@media(max-width:600px){.contact-form{padding:24px 20px}}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* TICKER */
+.ticker{
+  background:var(--pop-red);
+  border-top:3px solid var(--ink);
+  border-bottom:3px solid var(--ink);
+  padding:14px 0;
+  overflow:hidden;white-space:nowrap;
+}
+.ticker-inner{
+  display:inline-flex;gap:0;
+  animation:tick 22s linear infinite;
+}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tick-item{
+  font-family:'Dela Gothic One',sans-serif;
+  font-size:18px;color:#fff;letter-spacing:2px;
+  padding:0 32px;
+  display:inline-flex;align-items:center;gap:16px;
+}
+.tick-item::after{content:'★';color:rgba(255,255,255,.4);font-size:14px}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding:90px 24px 60px;gap:40px}
+  .hero-right{display:none}
+  section.section{padding:80px 24px}
+  .works-grid{grid-template-columns:1fr}
+  .flow-track{flex-direction:column}
+  .flow-step{border-right:none;border-bottom:2px solid rgba(255,255,255,.1)}
+  footer{padding:32px 24px}
+  nav{padding:0 20px}
+  .nav-badge{display:none}
+  .examples-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .examples-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ナビ -->
+<nav>
+  <div class="nav-logo">IIDA AI BUILD</div>
+  <div class="nav-badge">最短1日納品</div>
+  <a href="#contact" class="nav-cta">無料相談 →</a>
+</nav>
+
+<!-- ヒーロー -->
+<div style="background:var(--pop-yellow);border-bottom:3px solid var(--ink)">
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">AI ENGINEERING SERVICE</div>
+    <h1 class="hero-h1">
+      最短<span class="accent">1日</span>で<br>
+      <span class="stroke">あなたの</span><br>
+      アイデアを<br>
+      <span class="accent">形</span>にします。
+    </h1>
+    <p class="hero-sub">僕、飯田がAIエンジニアとして10万円からあなたのサービスを作ります。サーバーやAPIなど難しいことは全部こっちでやるので、アイデアを丸投げしてください。</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-hero-main">🔥 無料で相談する</a>
+      <a href="#works" class="btn-hero-sub">実績を見る →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-n">1<span class="stat-u">日〜</span></div>
+        <div class="stat-l">最短納品</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">10<span class="stat-u">万〜</span></div>
+        <div class="stat-l">スタート費用</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">0</div>
+        <div class="stat-l">必要な知識</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ティッカー -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="tick-item">SNS自動投稿</span>
+    <span class="tick-item">切り抜き動画自動生成</span>
+    <span class="tick-item">企画コンセプト動画</span>
+    <span class="tick-item">議事録自動作成</span>
+    <span class="tick-item">顧客管理アプリ</span>
+    <span class="tick-item">社内文書検索Bot</span>
+    <span class="tick-item">寝返り検知カメラ</span>
+    <span class="tick-item">レシート家計簿</span>
+    <span class="tick-item">音声タスク登録</span>
+    <span class="tick-item">部品検品AI</span>
+    <span class="tick-item">SNS自動投稿</span>
+    <span class="tick-item">切り抜き動画自動生成</span>
+    <span class="tick-item">企画コンセプト動画</span>
+    <span class="tick-item">議事録自動作成</span>
+    <span class="tick-item">顧客管理アプリ</span>
+    <span class="tick-item">社内文書検索Bot</span>
+    <span class="tick-item">寝返り検知カメラ</span>
+    <span class="tick-item">レシート家計簿</span>
+    <span class="tick-item">音声タスク登録</span>
+    <span class="tick-item">部品検品AI</span>
+  </div>
+</div>
+
+<!-- 例えばこんなもの（カテゴリ分け） -->
+<section class="section examples-section">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">WHAT I CAN BUILD</div>
+    <h2 class="section-title reveal">例えば、<br>こんなもの。<span class="hl">全部作れます。</span></h2>
+
+    <!-- SNS・コンテンツ自動化系 -->
+    <div class="cat-block sns reveal">
+      <div class="cat-label sns">📱 SNS・コンテンツ自動化系</div>
+      <div class="examples-grid">
+        <div class="ex-card">
+          <span class="ex-icon">📤</span>
+          <div class="ex-title">SNS自動投稿</div>
+          <div class="ex-desc">Instagram・X・TikTok・YouTubeなど各種SNSへAIがキャプション生成＆ハッシュタグ最適化。スケジュール設定で複数プラットフォームへ一括投稿。</div>
+        </div>
+        <div class="ex-card">
+          <span class="ex-icon">✂️</span>
+          <div class="ex-title">切り抜き動画自動生成</div>
+          <div class="ex-desc">長尺動画をAIが解析。バズるシーンを自動検出→切り抜き→テロップ付きで完成。</div>
+        </div>
+        <div class="ex-card">
+          <span class="ex-icon">🎬</span>
+          <div class="ex-title">企画コンセプト動画生成</div>
+          <div class="ex-desc">キーワードを入れるだけでAIが企画案を複数生成。台本から絵コンテまで自動化。</div>
+        </div>
+        <div class="ex-card">
+          <span class="ex-icon">💬</span>
+          <div class="ex-title">コメント・DM自動返信</div>
+          <div class="ex-desc">SNSへの問い合わせコメントやDMにAIが自動応答。トーン・内容をカスタマイズして24時間対応。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ビジネス効率化系 -->
+    <div class="cat-block biz reveal">
+      <div class="cat-label biz">💼 ビジネス効率化系</div>
+      <div class="examples-grid">
+        <div class="ex-card">
+          <span class="ex-icon">🎙️</span>
+          <div class="ex-title">会議音声→議事録テキスト自動作成</div>
+          <div class="ex-desc">録音するだけ。AIが文字起こし→要点整理→議事録フォーマットで自動出力。</div>
+        </div>
+        <div class="ex-card">
+          <span class="ex-icon">✉️</span>
+          <div class="ex-title">メール誤送信チェッカー</div>
+          <div class="ex-desc">送信前にAIが宛先・添付・内容を自動チェック。うっかりミスを未然に防ぐ。</div>
+        </div>
+        <div class="ex-card">
+          <span class="ex-icon">📝</span>
+          <div class="ex-title">資料ドラフト作成</div>
+          <div class="ex-desc">テーマを話すだけでAIが提案書・企画書の初稿を自動生成。編集コストを激減。</div>
+        </div>
+        <div class="ex-card">
+          <span class="ex-icon">🤖</span>
+          <div class="ex-title">社内文書検索・FAQチャットボット</div>
+          <div class="ex-desc">社内マニュアルをAIが学習。「あの規定どこだっけ？」を即解決するチャットBot。</div>
+        </div>
+        <div class="ex-card">
+          <span class="ex-icon">📰</span>
+          <div class="ex-title">トレンドニュース・市場調査システム</div>
+          <div class="ex-desc">毎朝AIが業界ニュースを自動収集・要約・レポート化。情報収集コストゼロへ。</div>
+        </div>
+        <div class="ex-card">
+          <span class="ex-icon">📊</span>
+          <div class="ex-title">営業の顧客管理アプリ</div>
+          <div class="ex-desc">商談状況・連絡先・履歴をAIで整理。チーム全員がリアルタイムで共有できる。</div>
+        </div>
+        <div class="ex-card">
+          <span class="ex-icon">👥</span>
+          <div class="ex-title">社員100人の情報をAIで自動データ化</div>
+          <div class="ex-desc">書類・名刺・履歴書をアップするだけでデータベース自動構築。手入力ゼロ。</div>
+        </div>
+        <div class="ex-card">
+          <span class="ex-icon">🔊</span>
+          <div class="ex-title">音声タスク自動登録アプリ</div>
+          <div class="ex-desc">「〇〇を△△までに担当：草野さん」と話すだけでNotionへ自動登録。移動中も10秒完了。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- カメラ・画像認識系 -->
+    <div class="cat-block cam reveal">
+      <div class="cat-label cam">📷 カメラ・画像認識系</div>
+      <div class="examples-grid">
+        <div class="ex-card">
+          <span class="ex-icon">👶</span>
+          <div class="ex-title">カメラでこどもの寝返りを検知して通知</div>
+          <div class="ex-desc">AIが映像をリアルタイム解析。危険な体勢を検知したらスマホへ即プッシュ通知。</div>
+        </div>
+        <div class="ex-card">
+          <span class="ex-icon">🔍</span>
+          <div class="ex-title">カメラ映像から部品検品</div>
+          <div class="ex-desc">カメラをかざすだけでAIが不良品を自動検出。検品時間・コストを大幅削減。</div>
+        </div>
+        <div class="ex-card">
+          <span class="ex-icon">🧾</span>
+          <div class="ex-title">レシートを撮るだけで自動で家計簿に記録・グラフ化</div>
+          <div class="ex-desc">撮影→金額・店名・カテゴリを自動認識→家計簿に即登録。グラフも自動生成。</div>
+        </div>
+        <div class="ex-card">
+          <span class="ex-icon">🏷️</span>
+          <div class="ex-title">画像で商品を自動で仕訳</div>
+          <div class="ex-desc">写真を撮るだけでAIが商品認識して会計ソフトへ自動カテゴリ登録。仕訳ゼロへ。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- あなたのアイデア -->
+    <div class="reveal" style="margin-top:24px">
+      <div class="ex-card" style="background:var(--pop-yellow);border-style:dashed;border-width:2px;max-width:320px">
+        <span class="ex-icon">💡</span>
+        <div class="ex-title">あなたのアイデアはなんですか？</div>
+        <div class="ex-desc">上記以外でもOK。「こんなの作れる？」をまず気軽に聞いてください。</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 実績 -->
+<section class="section works-section" id="works">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">WORKS</div>
+    <h2 class="section-title reveal">実際に<span class="hl">作ったもの。</span></h2>
+    <div class="works-grid reveal">
+
+      <!-- 切り抜き動画自動生成 -->
+      <div class="work-card">
+        <div class="work-screen">
+          <div class="mock-clip">
+            <div class="clip-header">
+              <div class="clip-logo">CLIP AUTO</div>
+              <div class="clip-badge">● AI解析中</div>
+            </div>
+            <div class="timeline-bar">
+              <div class="tl-label">TIMELINE ANALYSIS</div>
+              <div class="tl-track"><div class="tl-fill"></div></div>
+              <div class="tl-segments">
+                <div class="tl-seg">00:00</div>
+                <div class="tl-seg hot">03:24 🔥</div>
+                <div class="tl-seg">08:10</div>
+                <div class="tl-seg hot">14:52 🔥</div>
+                <div class="tl-seg">22:00</div>
+              </div>
+            </div>
+            <div class="export-row">
+              <div>
+                <div style="font-size:9px;opacity:.7;letter-spacing:1px;margin-bottom:2px">切り抜き完了</div>
+                <div style="font-size:11px">テロップ自動生成 → 書き出し準備中</div>
+              </div>
+              <div style="text-align:right">
+                <div style="font-size:9px;opacity:.7;letter-spacing:1px">CLIPS</div>
+                <div class="export-count">4</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="work-body">
+          <div class="work-tag-pill">VIDEO AUTOMATION</div>
+          <div class="work-title">切り抜き動画自動生成システム</div>
+          <div class="work-desc">長尺配信・セミナー動画をAIが自動解析。バズるシーンを検出し、テロップ付き切り抜き動画を全自動で生成。編集コストを最大90%削減。</div>
+        </div>
+      </div>
+
+      <!-- SNS自動投稿 -->
+      <div class="work-card">
+        <div class="work-screen">
+          <div class="mock-sns">
+            <div class="mock-header">
+              <div class="mock-logo">BUNSHIN AUTO</div>
+              <div class="mock-live"><span class="live-dot"></span>稼働中</div>
+            </div>
+            <div class="post-row">
+              <div class="platform-icon pi-ig">📷</div>
+              <div class="post-info">
+                <div class="post-name">インスタストーリー — 今夜21:00投稿予定</div>
+                <div class="post-meta">Instagram Story • SCHEDULED</div>
+              </div>
+              <span class="status-pill s-sched">SCHED</span>
+            </div>
+            <div class="post-row">
+              <div class="platform-icon pi-x">𝕏</div>
+              <div class="post-info">
+                <div class="post-name">AIキャプション生成中…</div>
+                <div class="post-meta">X (Twitter) • PROCESSING</div>
+              </div>
+              <span class="status-pill s-proc">PROC</span>
+            </div>
+            <div class="post-row">
+              <div class="platform-icon pi-ig">📷</div>
+              <div class="post-info">
+                <div class="post-name">週次投稿 — 完了</div>
+                <div class="post-meta">Instagram • 昨日 18:00</div>
+              </div>
+              <span class="status-pill s-done">DONE</span>
+            </div>
+            <div class="post-row">
+              <div class="platform-icon pi-x">𝕏</div>
+              <div class="post-info">
+                <div class="post-name">トレンドポスト — 明日 08:00</div>
+                <div class="post-meta">X (Twitter) • SCHEDULED</div>
+              </div>
+              <span class="status-pill s-sched">SCHED</span>
+            </div>
+          </div>
+        </div>
+        <div class="work-body">
+          <div class="work-tag-pill">SNS AUTOMATION</div>
+          <div class="work-title">SNS自動投稿システム</div>
+          <div class="work-desc">X・インスタストーリーへの一括スケジュール投稿を実現。AIによるキャプション自動生成・ハッシュタグ最適化・エンゲージメント分析まで全自動化。</div>
+        </div>
+      </div>
+
+      <!-- 企画コンセプト動画生成 -->
+      <div class="work-card">
+        <div class="work-screen">
+          <div class="mock-vgen">
+            <div class="vgen-header">
+              <div class="vgen-logo">VIDEO GEN AI</div>
+              <div class="vgen-status"><span class="live-dot" style="background:#c084fc"></span>生成中</div>
+            </div>
+            <div class="vgen-preview">
+              <div class="vgen-play">▶</div>
+              <div class="vgen-frame-dots">
+                <div class="vgen-dot active"></div>
+                <div class="vgen-dot"></div>
+                <div class="vgen-dot"></div>
+                <div class="vgen-dot"></div>
+                <div class="vgen-dot"></div>
+              </div>
+            </div>
+            <div class="vgen-bar-wrap">
+              <div class="vgen-bar-label">AI VIDEO GENERATION — 68%</div>
+              <div class="vgen-bar-track"><div class="vgen-bar-fill"></div></div>
+              <div class="vgen-clips">
+                <div class="vgen-clip done">SCENE 01</div>
+                <div class="vgen-clip done">SCENE 02</div>
+                <div class="vgen-clip gen">SCENE 03</div>
+                <div class="vgen-clip">SCENE 04</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="work-body">
+          <div class="work-tag-pill">AI VIDEO CONCEPT</div>
+          <div class="work-title">企画コンセプト動画生成システム</div>
+          <div class="work-desc">キーワードを入力するだけでAIが複数の企画コンセプトを生成。採用案をもとに台本・絵コンテ・ナレーション原稿まで自動出力。企画工数を大幅削減。</div>
+        </div>
+      </div>
+
+      <!-- 寝返り検知アプリ -->
+      <div class="work-card">
+        <div class="work-screen">
+          <div class="mock-baby2">
+            <div class="baby2-header">
+              <div class="baby2-logo">BABY POSE AUTO</div>
+              <div class="baby2-status"><span class="live-dot2"></span>稼働中</div>
+            </div>
+            <div class="baby2-row safe">
+              <div class="baby2-icon">👶</div>
+              <div class="baby2-info">
+                <div class="baby2-time">10:00 — 仰向け（安全）</div>
+              </div>
+              <div class="baby2-badge watch">監視中</div>
+            </div>
+            <div class="baby2-row danger">
+              <div class="baby2-icon">😨</div>
+              <div class="baby2-info">
+                <div class="baby2-time">10:15 — うつぶせ（危険）🔥</div>
+              </div>
+              <div class="baby2-badge alert">検知</div>
+            </div>
+            <div class="baby2-row notify">
+              <div class="baby2-icon line-icon">LINE</div>
+              <div class="baby2-info">
+                <div class="baby2-time">10:15 — LINE通知送信</div>
+                <div class="baby2-sub">「うつぶせ」を検知しました。ご確認ください。</div>
+              </div>
+              <div class="baby2-badge sent">送信済</div>
+            </div>
+            <div class="baby2-row notify">
+              <div class="baby2-icon mail-icon">✉</div>
+              <div class="baby2-info">
+                <div class="baby2-time">10:16 — メール通知送信</div>
+                <div class="baby2-sub">アラート: 赤ちゃんがうつぶせになっています</div>
+              </div>
+              <div class="baby2-badge sent">送信済</div>
+            </div>
+            <div class="baby2-row cam">
+              <div class="baby2-icon cam-icon">📷</div>
+              <div class="baby2-info">
+                <div class="baby2-time">10:20 — カメラ接続確認</div>
+              </div>
+              <div class="baby2-badge ok">OK</div>
+            </div>
+          </div>
+        </div>
+        <div class="work-body">
+          <div class="work-tag-pill">CAMERA AI</div>
+          <div class="work-title">こども寝返り検知アプリ</div>
+          <div class="work-desc">スマホカメラで赤ちゃんをリアルタイム監視。AIが体勢変化を即検知し、LINEやメールへ即座に通知。SIDS予防に貢献する安心の見守りシステム。</div>
+        </div>
+      </div>
+
+      <!-- 社内文書検索・FAQチャットボット -->
+      <div class="work-card">
+        <div class="work-screen">
+          <div class="mock-chat">
+            <div class="chat-header">
+              <div class="chat-icon">🤖</div>
+              <div>
+                <div class="chat-title">社内AI検索Bot</div>
+                <div class="chat-sub">INTERNAL FAQ SYSTEM</div>
+              </div>
+            </div>
+            <div class="chat-msgs">
+              <div class="msg user">有給の申請方法を教えてください</div>
+              <div class="msg bot">有給申請は社内ポータルの「勤怠管理」から行います。申請は取得希望日の3日前までに直属の上長へ提出が必要です。📄 就業規則 第15条参照</div>
+              <div class="msg user">リモートワークの規定は？</div>
+              <div class="msg bot">週3日まで在宅勤務可能です。事前申請不要ですが、チームカレンダーへの記入をお願いします。詳細は在宅勤務ガイドラインP.4をご確認ください。</div>
+            </div>
+            <div class="chat-input-row">
+              <div class="chat-placeholder">社内文書について質問する…</div>
+              <div class="chat-send">→</div>
+            </div>
+          </div>
+        </div>
+        <div class="work-body">
+          <div class="work-tag-pill">AI CHATBOT</div>
+          <div class="work-title">社内文書検索・FAQチャットボット</div>
+          <div class="work-desc">社内マニュアル・規則・議事録をAIが丸ごと学習。チャットで質問するだけで瞬時に回答。「あの規定どこだっけ？」の調査時間をゼロに。</div>
+        </div>
+      </div>
+
+      <!-- レシート自動家計簿 -->
+      <div class="work-card">
+        <div class="work-screen">
+          <div class="mock-receipt">
+            <div class="receipt-header">
+              <div class="receipt-logo">RECEIPT AI</div>
+              <div class="receipt-badge">自動認識</div>
+            </div>
+            <div class="receipt-scan-row">
+              <div class="receipt-scan-icon">🧾</div>
+              <div class="receipt-scan-info">
+                <div class="receipt-scan-name">スーパーマルエツ 新宿店</div>
+                <div class="receipt-scan-sub">2024.03.15 / OCR解析完了</div>
+              </div>
+            </div>
+            <div class="receipt-items">
+              <div class="receipt-item">
+                <div class="receipt-cat cat-food"></div>
+                <div class="receipt-item-name">牛乳 1本</div>
+                <div class="receipt-item-price">¥198</div>
+              </div>
+              <div class="receipt-item">
+                <div class="receipt-cat cat-food"></div>
+                <div class="receipt-item-name">食パン 1袋</div>
+                <div class="receipt-item-price">¥158</div>
+              </div>
+              <div class="receipt-item">
+                <div class="receipt-cat cat-daily"></div>
+                <div class="receipt-item-name">シャンプー</div>
+                <div class="receipt-item-price">¥498</div>
+              </div>
+              <div class="receipt-item">
+                <div class="receipt-cat cat-food"></div>
+                <div class="receipt-item-name">野菜セット</div>
+                <div class="receipt-item-price">¥320</div>
+              </div>
+            </div>
+            <div class="receipt-total">
+              <div class="receipt-total-label">TOTAL</div>
+              <div class="receipt-total-num">¥1,174</div>
+            </div>
+          </div>
+        </div>
+        <div class="work-body">
+          <div class="work-tag-pill">RECEIPT AI</div>
+          <div class="work-title">レシート自動家計簿システム</div>
+          <div class="work-desc">スマホでレシートを撮影するだけ。AIがOCRで金額・店名・品目を自動認識し、カテゴリ別に家計簿へ即登録。グラフも自動生成で支出管理がゼロ手間に。</div>
+          <div class="tech-chips">
+            <span class="chip">OCR</span>
+            <span class="chip">GPT-4o</span>
+            <span class="chip">Notion API</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 飯田さんの言葉セクション -->
+<section class="section voice-section" style="padding:100px 40px">
+  <div class="voice-inner">
+    <div class="voice-quote">
+      「難しいことは<br>全部僕がやります。<br>アイデアだけ<br>持ってきてください。」
+    </div>
+    <p class="voice-sub">サーバーの設定、APIキーの取得、コードの記述。全部こっちでやります。あなたはやりたいことだけ話してくれれば、最短で形にします。</p>
+    <div class="voice-sign">
+      <div class="sign-avatar"><img src="figure/iida.jpg" alt="飯田 祐基"></div>
+      飯田 祐基
+    </div>
+  </div>
+</section>
+
+<!-- フロー -->
+<section class="section flow-section">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">HOW IT WORKS</div>
+    <h2 class="section-title reveal">相談から<span class="hl">最短1日</span>で<br>納品まで。</h2>
+    <div class="flow-track reveal">
+      <div class="flow-step">
+        <div class="flow-num">STEP 01</div>
+        <div class="flow-icon">📝</div>
+        <div class="flow-title">フォーム記入</div>
+        <div class="flow-desc">作りたいものの概要をフォームに入力。「なんとなく」でもOK。</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">STEP 02</div>
+        <div class="flow-icon">💬</div>
+        <div class="flow-title">打ち合わせ</div>
+        <div class="flow-desc">担当者とオンラインで30分ヒアリング。詳細を一緒に整理します。</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">STEP 03</div>
+        <div class="flow-icon">💰</div>
+        <div class="flow-title">お見積り</div>
+        <div class="flow-desc">内容・期間・費用を明確に提示。納得できたら進めます。</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">STEP 04</div>
+        <div class="flow-icon">⚡</div>
+        <div class="flow-title">開発スタート</div>
+        <div class="flow-desc">確定後、最短当日から開発開始。スピード最優先で動きます。</div>
+        <div class="flow-pill">最短1日〜</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">STEP 05</div>
+        <div class="flow-icon">🔄</div>
+        <div class="flow-title">フィードバック</div>
+        <div class="flow-desc">修正・調整をスピーディに対応。満足いくまで一緒に作ります。</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">STEP 06</div>
+        <div class="flow-icon">🚀</div>
+        <div class="flow-title">納品！</div>
+        <div class="flow-desc">本番環境にデプロイして完成。使い方も丁寧にレクチャーします。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 料金 -->
+<section class="section price-section" id="price">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">PRICING</div>
+    <h2 class="section-title reveal">シンプルな<br><span class="hl">料金体系。</span></h2>
+    <div class="price-grid reveal">
+      <div class="price-card">
+        <div class="price-plan">PLAN A</div>
+        <div class="price-num">10<span class="price-unit">万円〜</span></div>
+        <div class="price-period">完成まで1〜3日</div>
+        <div class="price-label">シンプルなツール・自動化</div>
+        <ul class="price-list">
+          <li>単機能アプリ・ツール</li>
+          <li>自動化スクリプト</li>
+          <li>API連携システム</li>
+          <li>Webスクレイピング</li>
+          <li>簡易ダッシュボード</li>
+        </ul>
+      </div>
+      <div class="price-card hot">
+        <div class="hot-badge">POPULAR</div>
+        <div class="price-plan">PLAN B</div>
+        <div class="price-num">50<span class="price-unit">万円〜</span></div>
+        <div class="price-period">完成まで約1週間</div>
+        <div class="price-label">本格的なAIアプリ</div>
+        <ul class="price-list">
+          <li>複数機能を持つアプリ</li>
+          <li>AI画像・音声解析システム</li>
+          <li>業務自動化プラットフォーム</li>
+          <li>カスタムチャットボット</li>
+          <li>データ分析・可視化システム</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">PLAN C</div>
+        <div class="price-num">100<span class="price-unit">万円〜</span></div>
+        <div class="price-period">大規模・高難易度</div>
+        <div class="price-label">エンタープライズ開発</div>
+        <ul class="price-list">
+          <li>大規模データ処理基盤</li>
+          <li>マルチテナントSaaS</li>
+          <li>独自AIモデルの開発・学習</li>
+          <li>複雑な業務システム統合</li>
+          <li>保守・運用サポート付き</li>
+        </ul>
+      </div>
+    </div>
+    <div class="price-note-box reveal">
+      ※ 内容やボリュームによって価格は変わります。まずはお気軽にご相談ください。<br>
+      ※ 導入費・APIキー代・サーバー代は別途ご負担いただきます（目安：月1,000〜5,000円程度）。
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq-section">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">FAQ</div>
+    <h2 class="section-title reveal">よくある<span class="hl">質問。</span></h2>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-text">技術的な知識がなくても大丈夫ですか？</div>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-text">まったく問題ありません。「こういうことがしたい」というアイデアだけ教えてください。サーバーの設定・APIキーの取得・コードの記述まで、全部こっちでやります。</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-text">本当に最短1日で納品できるんですか？</div>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-text">シンプルな機能のツールやスクリプトであれば、打ち合わせ翌日には納品可能です。複雑な機能が必要な場合は、別途スケジュールをご提案します。</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-text">納品後に修正や追加機能の依頼はできますか？</div>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-text">もちろんです。納品後の修正・機能追加も別途お見積りにて対応可能です。継続してお付き合いいただくことで、より良いサービスに育てていけます。</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-text">「なんとなくこういうのが欲しい」でも相談できますか？</div>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-text">むしろそういうご相談が一番多いです。「こういうことで困ってる」「こういうことを自動化したい」という段階で十分。一緒に整理しながら最適なものを提案します。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- お問い合わせ -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner">
+    <div class="cta-tag">FREE CONSULTATION</div>
+    <h2 class="cta-h">アイデア、<br><span>丸投げして</span><br>ください。</h2>
+    <p class="cta-desc">まずは無料相談から。あなたの「こんなものが欲しい」を<br>形にするために、全力で取り組みます。</p>
+    <div class="contact-form">
+      <div class="form-group">
+        <label class="form-label">お名前 *</label>
+        <input type="text" class="form-input" placeholder="山田 太郎">
+      </div>
+      <div class="form-group">
+        <label class="form-label">メールアドレス *</label>
+        <input type="email" class="form-input" placeholder="example@email.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">お電話番号</label>
+        <input type="tel" class="form-input" placeholder="090-0000-0000">
+      </div>
+      <div class="form-group">
+        <label class="form-label">作りたいもの・相談内容 *</label>
+        <textarea class="form-textarea" placeholder="「こういうことを自動化したい」「こんなアプリが欲しい」など、なんとなくでもOKです！"></textarea>
+      </div>
+      <button class="btn-form-submit">🚀 無料相談を申し込む</button>
+    </div>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer>
+  <div class="footer-logo">IIDA AI BUILD</div>
+  <div class="footer-copy">© 2026 株式会社イデオロギー / 飯田 祐基</div>
+</footer>
+
+<script>
+function toggleFaq(el){
+  const item=el.closest('.faq-item');
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+}
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
