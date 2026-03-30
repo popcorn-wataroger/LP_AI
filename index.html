@@ -3,7 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>最短1日納品｜AIで作るなら僕に頼んで</title>
+<title>最短1日納品｜AIで作るなら飯田に頼んで | IIDA AI BUILD</title>
+<meta name="description" content="最短1日・10万円〜。AIエンジニア飯田祐基が、あなたのアイデアをAIアプリとして形にします。サーバーやAPIの設定は全部こっちでやります。アイデアを丸投げしてください。">
+<!-- OGP -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="最短1日納品｜AIで作るなら飯田に頼んで | IIDA AI BUILD">
+<meta property="og:description" content="最短1日・10万円〜。AIエンジニア飯田祐基が、あなたのアイデアをAIアプリとして形にします。丸投げOK。">
+<meta property="og:url" content="https://lp-ai-9pb.pages.dev">
+<meta property="og:image" content="https://lp-ai-9pb.pages.dev/figure/iida.jpg">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:site_name" content="IIDA AI BUILD">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="最短1日納品｜AIで作るなら飯田に頼んで">
+<meta name="twitter:description" content="最短1日・10万円〜。AIエンジニア飯田祐基が、あなたのアイデアをAIアプリとして形にします。">
+<meta name="twitter:image" content="https://lp-ai-9pb.pages.dev/figure/iida.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans+JP:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -1069,6 +1083,7 @@ footer{
   margin-top:8px;
 }
 .btn-form-submit:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 rgba(255,255,255,.15)}
+.btn-form-submit:disabled{opacity:.55;cursor:not-allowed;transform:none !important;box-shadow:5px 5px 0 rgba(255,255,255,.1) !important}
 @media(max-width:600px){.contact-form{padding:24px 20px}}
 
 /* SCROLL REVEAL */
@@ -1098,9 +1113,16 @@ footer{
 
 /* RESPONSIVE */
 @media(max-width:900px){
-  .hero{grid-template-columns:1fr;padding:90px 24px 60px;gap:40px}
-  .hero-right{display:none}
-  section.section{padding:80px 24px}
+  .hero{grid-template-columns:1fr;padding:90px 24px 72px;gap:32px}
+  .hero-right{display:block}
+  .profile-card{padding:20px;box-shadow:4px 4px 0 var(--ink)}
+  .profile-avatar{width:80px;height:80px;font-size:40px;margin-bottom:14px}
+  .profile-name{font-size:18px}
+  .profile-tags{gap:6px}
+  .ptag{font-size:11px;padding:5px 11px}
+  .profile-quote{font-size:12px;padding:12px 14px}
+  .float-badge-2{bottom:-12px;left:-8px;font-size:12px;padding:8px 12px}
+  section.section{padding:72px 24px}
   .works-grid{grid-template-columns:1fr}
   .flow-track{flex-direction:column}
   .flow-step{border-right:none;border-bottom:2px solid rgba(255,255,255,.1)}
@@ -1108,9 +1130,14 @@ footer{
   nav{padding:0 20px}
   .nav-badge{display:none}
   .examples-grid{grid-template-columns:1fr 1fr}
+  .cta-section{padding:80px 24px}
+  .contact-form{padding:28px 20px}
 }
 @media(max-width:480px){
   .examples-grid{grid-template-columns:1fr}
+  .hero{padding:80px 20px 64px}
+  .bai-feeds{gap:6px}
+  .bai-detect-label{font-size:5.5px}
 }
 </style>
 </head>
@@ -1752,24 +1779,41 @@ footer{
     <div class="cta-tag">FREE CONSULTATION</div>
     <h2 class="cta-h">アイデア、<br><span>丸投げして</span><br>ください。</h2>
     <p class="cta-desc">まずは無料相談から。あなたの「こんなものが欲しい」を<br>形にするために、全力で取り組みます。</p>
-    <div class="contact-form">
+    <form class="contact-form" id="contact-form"
+          action="https://api.web3forms.com/submit" method="POST">
+      <!-- Web3Forms 設定 (https://web3forms.com でメールアドレスを入力してアクセスキーを取得) -->
+      <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+      <input type="hidden" name="subject" value="AIサービスのご相談 - IIDA AI BUILD">
+      <input type="hidden" name="from_name" value="IIDA AI BUILD LP">
+      <input type="hidden" name="redirect" value="false">
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
       <div class="form-group">
         <label class="form-label">お名前 *</label>
-        <input type="text" class="form-input" placeholder="山田 太郎">
+        <input type="text" name="name" class="form-input" placeholder="山田 太郎" required>
       </div>
       <div class="form-group">
         <label class="form-label">メールアドレス *</label>
-        <input type="email" class="form-input" placeholder="example@email.com">
+        <input type="email" name="email" class="form-input" placeholder="example@email.com" required>
       </div>
       <div class="form-group">
         <label class="form-label">お電話番号</label>
-        <input type="tel" class="form-input" placeholder="090-0000-0000">
+        <input type="tel" name="phone" class="form-input" placeholder="090-0000-0000">
       </div>
       <div class="form-group">
         <label class="form-label">作りたいもの・相談内容 *</label>
-        <textarea class="form-textarea" placeholder="「こういうことを自動化したい」「こんなアプリが欲しい」など、なんとなくでもOKです！"></textarea>
+        <textarea name="message" class="form-textarea"
+          placeholder="「こういうことを自動化したい」「こんなアプリが欲しい」など、なんとなくでもOKです！"
+          required></textarea>
       </div>
-      <button class="btn-form-submit">🚀 無料相談を申し込む</button>
+      <button type="submit" class="btn-form-submit" id="submit-btn">🚀 無料相談を申し込む</button>
+    </form>
+    <!-- 送信完了メッセージ -->
+    <div id="form-success" style="display:none;text-align:center;padding:56px 20px">
+      <div style="font-size:56px;margin-bottom:20px">✅</div>
+      <div style="font-family:'Dela Gothic One',sans-serif;font-size:26px;color:#fff;margin-bottom:14px">送信完了！</div>
+      <div style="color:rgba(255,255,255,.65);font-size:15px;line-height:1.9">
+        お問い合わせありがとうございます。<br>飯田より2〜3営業日以内にご連絡します。
+      </div>
     </div>
   </div>
 </section>
@@ -1781,6 +1825,33 @@ footer{
 </footer>
 
 <script>
+// お問い合わせフォーム送信
+(function(){
+  const form = document.getElementById('contact-form');
+  const btn  = document.getElementById('submit-btn');
+  const success = document.getElementById('form-success');
+  if(!form) return;
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    btn.textContent = '送信中…';
+    btn.disabled = true;
+    try{
+      const res  = await fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(form)});
+      const json = await res.json();
+      if(json.success){
+        form.style.display = 'none';
+        success.style.display = 'block';
+      } else {
+        btn.textContent = '送信に失敗しました。もう一度お試しください';
+        btn.disabled = false;
+      }
+    } catch(err){
+      btn.textContent = '送信に失敗しました。もう一度お試しください';
+      btn.disabled = false;
+    }
+  });
+})();
+
 function toggleFaq(el){
   const item=el.closest('.faq-item');
   const isOpen=item.classList.contains('open');
