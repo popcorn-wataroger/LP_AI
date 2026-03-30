@@ -547,82 +547,91 @@ nav{
 }
 @keyframes alertpulse{0%,100%{opacity:1}50%{opacity:.6}}
 
-/* ─── 寝返り検知モック（画像ベース） ─── */
-.mock-baby2{
+/* ─── 寝返り検知AIカメラモック ─── */
+.mock-babyai{
   background:#0e1117;
   width:100%;height:100%;
-  padding:18px 20px;
-  display:flex;flex-direction:column;gap:8px;
-  font-family:'Noto Sans JP',sans-serif;
+  padding:14px 16px;
+  display:flex;flex-direction:column;gap:10px;
 }
-.baby2-header{
+.bai-header{
   display:flex;justify-content:space-between;align-items:center;
-  padding-bottom:12px;
-  border-bottom:1px solid rgba(255,255,255,.1);
-  margin-bottom:2px;
+  padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08);
 }
-.baby2-logo{
+.bai-logo{
   font-family:'Dela Gothic One',sans-serif;
-  font-size:15px;letter-spacing:2px;color:#fff;
+  font-size:13px;letter-spacing:2px;color:#5cffc8;
 }
-.baby2-status{
+.bai-live{
   display:flex;align-items:center;gap:6px;
-  font-size:11px;color:#5cffc8;
-  font-family:'Space Mono',monospace;
+  font-size:9px;color:#5cffc8;font-family:'Space Mono',monospace;
 }
-.live-dot2{
-  width:6px;height:6px;border-radius:50%;
-  background:#5cffc8;animation:blink 1.2s infinite;
+.bai-feeds{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  flex:1;
 }
-.baby2-row{
-  display:flex;align-items:center;gap:12px;
-  border-radius:10px;
-  padding:10px 12px;
-  border:1px solid rgba(255,255,255,.07);
-  background:rgba(255,255,255,.03);
-}
-.baby2-row.danger{
-  background:rgba(255,61,61,.08);
-  border-color:rgba(255,61,61,.25);
-}
-.baby2-icon{
-  width:34px;height:34px;border-radius:8px;
-  background:rgba(255,255,255,.06);
+.bai-feed{
+  border-radius:8px;
+  position:relative;
+  background:linear-gradient(145deg,#e8e3cf,#d4cdb8);
   display:flex;align-items:center;justify-content:center;
-  font-size:18px;flex-shrink:0;
-  border:1px solid rgba(255,255,255,.08);
+  overflow:hidden;
 }
-.line-icon{
-  background:#06c755;
-  font-size:9px;font-weight:900;color:#fff;
-  letter-spacing:0;border-color:#06c755;
+.bai-feed.pose-danger{
+  animation:dangeralert 2s ease-in-out infinite;
 }
-.mail-icon{
-  background:#3b82f6;
-  font-size:14px;border-color:#3b82f6;
+@keyframes dangeralert{
+  0%,100%{box-shadow:0 0 0 0 rgba(255,61,61,0)}
+  50%{box-shadow:inset 0 0 0 2px rgba(255,61,61,.25)}
 }
-.cam-icon{
-  background:rgba(255,255,255,.08);
-  font-size:16px;
+.bai-detect-box{
+  position:absolute;inset:6px;
+  border-width:2px;border-style:solid;border-radius:3px;
 }
-.baby2-info{flex:1;min-width:0}
-.baby2-time{
-  font-size:11px;color:rgba(255,255,255,.85);
-  font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+.bai-detect-box.c-safe{border-color:#5cffc8}
+.bai-detect-box.c-warn{border-color:#3d7bff}
+.bai-detect-box.c-danger{border-color:#fff}
+.bai-detect-label{
+  position:absolute;top:-1px;left:-1px;
+  font-family:'Space Mono',monospace;
+  font-size:6.5px;font-weight:700;padding:2px 5px;line-height:1.4;
 }
-.baby2-sub{
-  font-size:9px;color:rgba(255,255,255,.4);
-  margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+.bai-detect-label.c-safe{background:#5cffc8;color:#000}
+.bai-detect-label.c-warn{background:#3d7bff;color:#fff}
+.bai-detect-label.c-danger{background:#fff;color:#000}
+/* baby figure shapes (top-down camera view) */
+.bai-figure{
+  position:relative;z-index:1;
+  display:flex;align-items:center;
 }
-.baby2-badge{
-  padding:4px 10px;border-radius:999px;
-  font-size:9px;font-weight:700;letter-spacing:1px;
-  font-family:'Space Mono',monospace;flex-shrink:0;
+.baby-torso{
+  width:38px;height:21px;border-radius:999px;
+  border:1px solid rgba(0,0,0,.08);
 }
-.baby2-badge.watch{background:rgba(61,111,255,.2);color:#7099ff;border:1px solid rgba(61,111,255,.3)}
-.baby2-badge.alert{background:rgba(255,61,61,.25);color:#ff7070;border:1px solid rgba(255,61,61,.4)}
-.baby2-badge.sent{background:rgba(6,199,85,.15);color:#06c755;border:1px solid rgba(6,199,85,.3)}
-.baby2-badge.ok{background:rgba(46,204,113,.15);color:#2ecc71;border:1px solid rgba(46,204,113,.3)}
+.baby-hd{
+  width:18px;height:18px;border-radius:50%;
+  border:1px solid rgba(0,0,0,.08);margin-left:-4px;
+}
+/* 仰向け: 明るいスキントーン */
+.pose-up .baby-torso,.pose-up .baby-hd{background:#f0c090}
+/* うつ伏せ: 暗めトーン＋影でうつ伏せ感 */
+.pose-down .baby-torso{background:#c8924a;box-shadow:0 3px 6px rgba(0,0,0,.18)}
+.pose-down .baby-hd{background:#c8924a}
+/* 危険: 斜め体勢 */
+.pose-danger .bai-figure{transform:rotate(-38deg)}
+.pose-danger .baby-torso,.pose-danger .baby-hd{background:#f0c090}
+/* feed label */
+.bai-feed-name{
+  position:absolute;bottom:5px;left:0;right:0;
+  text-align:center;
+  font-size:7px;font-family:'Space Mono',monospace;
+  font-weight:700;letter-spacing:.5px;z-index:2;
+}
+.bai-feed-name.c-safe{color:#5cffc8}
+.bai-feed-name.c-warn{color:#3d7bff}
+.bai-feed-name.c-danger{color:#ff6b6b;animation:alertpulse 1s infinite}
 
 /* ─── FAQ チャットボットモック（ダーク） ─── */
 .mock-chat{
@@ -1446,47 +1455,45 @@ footer{
       <!-- 寝返り検知アプリ -->
       <div class="work-card">
         <div class="work-screen">
-          <div class="mock-baby2">
-            <div class="baby2-header">
-              <div class="baby2-logo">BABY POSE AUTO</div>
-              <div class="baby2-status"><span class="live-dot2"></span>稼働中</div>
+          <div class="mock-babyai">
+            <div class="bai-header">
+              <div class="bai-logo">POSE DETECT AI</div>
+              <div class="bai-live"><span class="live-dot"></span>稼働中</div>
             </div>
-            <div class="baby2-row safe">
-              <div class="baby2-icon">👶</div>
-              <div class="baby2-info">
-                <div class="baby2-time">10:00 — 仰向け（安全）</div>
+            <div class="bai-feeds">
+              <!-- 仰向け -->
+              <div class="bai-feed pose-up">
+                <div class="bai-detect-box c-safe">
+                  <div class="bai-detect-label c-safe">FaceUp 0.95</div>
+                </div>
+                <div class="bai-figure">
+                  <div class="baby-torso"></div>
+                  <div class="baby-hd"></div>
+                </div>
+                <div class="bai-feed-name c-safe">仰向け</div>
               </div>
-              <div class="baby2-badge watch">監視中</div>
-            </div>
-            <div class="baby2-row danger">
-              <div class="baby2-icon">😨</div>
-              <div class="baby2-info">
-                <div class="baby2-time">10:15 — うつぶせ（危険）🔥</div>
+              <!-- うつ伏せ -->
+              <div class="bai-feed pose-down">
+                <div class="bai-detect-box c-warn">
+                  <div class="bai-detect-label c-warn">FaceDown 0.96</div>
+                </div>
+                <div class="bai-figure">
+                  <div class="baby-torso"></div>
+                  <div class="baby-hd"></div>
+                </div>
+                <div class="bai-feed-name c-warn">うつ伏せ</div>
               </div>
-              <div class="baby2-badge alert">検知</div>
-            </div>
-            <div class="baby2-row notify">
-              <div class="baby2-icon line-icon">LINE</div>
-              <div class="baby2-info">
-                <div class="baby2-time">10:15 — LINE通知送信</div>
-                <div class="baby2-sub">「うつぶせ」を検知しました。ご確認ください。</div>
+              <!-- 危険 -->
+              <div class="bai-feed pose-danger">
+                <div class="bai-detect-box c-danger">
+                  <div class="bai-detect-label c-danger">Danger 0.97</div>
+                </div>
+                <div class="bai-figure">
+                  <div class="baby-torso"></div>
+                  <div class="baby-hd"></div>
+                </div>
+                <div class="bai-feed-name c-danger">危険検知</div>
               </div>
-              <div class="baby2-badge sent">送信済</div>
-            </div>
-            <div class="baby2-row notify">
-              <div class="baby2-icon mail-icon">✉</div>
-              <div class="baby2-info">
-                <div class="baby2-time">10:16 — メール通知送信</div>
-                <div class="baby2-sub">アラート: 赤ちゃんがうつぶせになっています</div>
-              </div>
-              <div class="baby2-badge sent">送信済</div>
-            </div>
-            <div class="baby2-row cam">
-              <div class="baby2-icon cam-icon">📷</div>
-              <div class="baby2-info">
-                <div class="baby2-time">10:20 — カメラ接続確認</div>
-              </div>
-              <div class="baby2-badge ok">OK</div>
             </div>
           </div>
         </div>
