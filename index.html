@@ -71,12 +71,10 @@ nav{
 .hero{
   min-height:100vh;
   background:var(--pop-yellow);
-  border-bottom:3px solid var(--ink);
   padding:100px 40px 80px;
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:60px;
-  max-width:1200px;
   align-items:center;
   max-width:1200px;
   margin:0 auto;
@@ -88,32 +86,32 @@ nav{
   padding:6px 16px;border-radius:999px;
   font-family:'Space Mono',monospace;
   font-size:11px;font-weight:700;letter-spacing:2px;
-  margin-bottom:28px;
+  margin-bottom:24px;
 }
 .hero-eyebrow::before{content:'●';color:var(--pop-red);animation:blink 1s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 
 .hero-h1{
   font-family:'Dela Gothic One',sans-serif;
-  font-size:clamp(44px,6.5vw,82px);
-  line-height:1.05;
+  font-size:clamp(40px,5.5vw,72px);
+  line-height:1.08;
   letter-spacing:-1px;
   color:var(--ink);
-  margin-bottom:24px;
+  margin-bottom:20px;
 }
 .hero-h1 .stroke{
-  -webkit-text-stroke:3px var(--ink);
+  -webkit-text-stroke:2px var(--ink);
   color:transparent;
 }
 .hero-h1 .accent{color:var(--pop-red)}
 
 .hero-sub{
-  font-size:17px;color:rgba(17,17,17,.7);
-  line-height:1.8;margin-bottom:40px;
-  font-weight:400;max-width:480px;
+  font-size:15px;color:rgba(17,17,17,.65);
+  line-height:1.9;margin-bottom:36px;
+  font-weight:400;max-width:460px;
 }
 
-.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:48px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
 .btn-hero-main{
   background:var(--pop-red);color:#fff;
   padding:16px 36px;
@@ -149,20 +147,20 @@ nav{
 .stat:last-child{border-right:none}
 .stat-n{
   font-family:'Dela Gothic One',sans-serif;
-  font-size:36px;color:var(--pop-red);
+  font-size:30px;color:var(--pop-red);
   line-height:1;
 }
-.stat-u{font-size:14px;color:var(--ink)}
+.stat-u{font-size:13px;color:var(--ink)}
 .stat-l{font-size:11px;color:var(--text-muted);margin-top:4px;font-weight:500}
 
 /* HERO RIGHT */
-.hero-right{position:relative}
+.hero-right{position:relative;padding-bottom:20px}
 .profile-card{
   background:#fff;
   border:3px solid var(--ink);
   border-radius:24px;
-  padding:32px;
-  box-shadow:8px 8px 0 var(--ink);
+  padding:28px;
+  box-shadow:6px 6px 0 var(--ink);
   position:relative;
 }
 .profile-avatar{
@@ -182,16 +180,16 @@ nav{
 }
 .profile-name{
   font-family:'Dela Gothic One',sans-serif;
-  font-size:22px;text-align:center;margin-bottom:4px;
+  font-size:20px;text-align:center;margin-bottom:4px;
 }
 .profile-role{
-  font-size:12px;color:var(--text-muted);
-  text-align:center;margin-bottom:20px;
+  font-size:11px;color:var(--text-muted);
+  text-align:center;margin-bottom:16px;
   font-family:'Space Mono',monospace;letter-spacing:1px;
 }
 .profile-tags{
-  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
-  margin-bottom:20px;
+  display:flex;flex-wrap:wrap;gap:6px;justify-content:center;
+  margin-bottom:16px;
 }
 .ptag{
   padding:6px 14px;
@@ -207,9 +205,9 @@ nav{
 .profile-quote{
   background:var(--cream);
   border-radius:12px;
-  padding:16px 18px;
-  font-size:14px;line-height:1.7;
-  color:rgba(17,17,17,.8);
+  padding:14px 16px;
+  font-size:13px;line-height:1.75;
+  color:rgba(17,17,17,.75);
   border-left:4px solid var(--pop-red);
   font-style:italic;
 }
@@ -241,9 +239,9 @@ nav{
 .section-eyebrow::before{content:'';width:20px;height:2px;background:var(--pop-red)}
 .section-title{
   font-family:'Dela Gothic One',sans-serif;
-  font-size:clamp(32px,4.5vw,58px);
+  font-size:clamp(28px,4vw,52px);
   line-height:1.1;
-  margin-bottom:48px;
+  margin-bottom:44px;
   letter-spacing:-0.5px;
 }
 .section-title .hl{color:var(--pop-red)}
@@ -310,7 +308,7 @@ nav{
 .works-section{background:var(--cream)}
 .works-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(480px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(420px,1fr));
   gap:24px;
 }
 .work-card{
@@ -765,7 +763,7 @@ nav{
 }
 .price-num{
   font-family:'Dela Gothic One',sans-serif;
-  font-size:62px;color:var(--ink);
+  font-size:54px;color:var(--ink);
   line-height:1;margin-bottom:4px;
 }
 .price-unit{font-size:18px}
@@ -797,15 +795,15 @@ nav{
 }
 .voice-quote{
   font-family:'Dela Gothic One',sans-serif;
-  font-size:clamp(28px,4.5vw,52px);
+  font-size:clamp(26px,4vw,48px);
   color:#fff;
-  line-height:1.2;
+  line-height:1.25;
   margin-bottom:24px;
   letter-spacing:-0.5px;
 }
 .voice-sub{
-  font-size:17px;color:rgba(255,255,255,.8);
-  line-height:1.8;margin-bottom:48px;font-weight:300;
+  font-size:15px;color:rgba(255,255,255,.8);
+  line-height:1.9;margin-bottom:44px;font-weight:300;
 }
 .voice-sign{
   font-family:'Dela Gothic One',sans-serif;
@@ -861,14 +859,14 @@ nav{
 }
 .cta-h{
   font-family:'Dela Gothic One',sans-serif;
-  font-size:clamp(40px,6vw,76px);
-  color:#fff;line-height:1.05;
-  margin-bottom:24px;letter-spacing:-1px;
+  font-size:clamp(36px,5vw,68px);
+  color:#fff;line-height:1.08;
+  margin-bottom:20px;letter-spacing:-1px;
 }
 .cta-h span{color:var(--pop-yellow)}
 .cta-desc{
-  font-size:17px;color:rgba(255,255,255,.6);
-  margin-bottom:48px;line-height:1.8;font-weight:300;
+  font-size:15px;color:rgba(255,255,255,.6);
+  margin-bottom:44px;line-height:1.9;font-weight:300;
 }
 .btn-cta{
   display:inline-block;
@@ -1148,7 +1146,6 @@ footer{
     </div>
   </div>
   <div class="hero-right">
-    <div class="float-badge float-badge-1">🚀 最短翌日納品！</div>
     <div class="profile-card">
       <div class="profile-avatar">
         <img src="figure/iida.jpg" alt="飯田 祐基">
