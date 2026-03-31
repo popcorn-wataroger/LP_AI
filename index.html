@@ -248,15 +248,16 @@ nav{
   font-size:11px;letter-spacing:3px;
   color:var(--text-muted);font-weight:700;
   margin-bottom:16px;
-  display:flex;align-items:center;gap:10px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
 }
-.section-eyebrow::before{content:'';width:20px;height:2px;background:var(--pop-red)}
+.section-eyebrow::before,.section-eyebrow::after{content:'';width:20px;height:2px;background:var(--pop-red)}
 .section-title{
   font-family:'Dela Gothic One',sans-serif;
   font-size:clamp(28px,4vw,52px);
   line-height:1.1;
   margin-bottom:44px;
   letter-spacing:-0.5px;
+  text-align:center;
 }
 .section-title .hl{color:var(--pop-red)}
 
@@ -674,7 +675,7 @@ nav{
   border-bottom:3px solid var(--ink);
 }
 .flow-section .section-eyebrow{color:rgba(255,255,255,.4)}
-.flow-section .section-eyebrow::before{background:var(--pop-yellow)}
+.flow-section .section-eyebrow::before,.flow-section .section-eyebrow::after{background:var(--pop-yellow)}
 .flow-section .section-title{color:#fff}
 .flow-section .section-title .hl{color:var(--pop-yellow)}
 
@@ -804,8 +805,6 @@ nav{
 
 /* FAQ */
 .faq-section{background:var(--cream);border-top:3px solid var(--ink)}
-.faq-section .section-eyebrow{justify-content:center}
-.faq-section .section-title{text-align:center}
 .faq-list{max-width:800px;margin:0 auto}
 .faq-item{border-bottom:2px solid var(--ink)}
 .faq-q{
@@ -1592,7 +1591,7 @@ footer{
 </section>
 
 <!-- 飯田さんの言葉セクション -->
-<section class="section voice-section" style="padding:100px 40px">
+<section class="section voice-section">
   <div class="voice-inner">
     <div class="voice-quote">
       「難しいことは<br>全部僕がやります。<br>アイデアだけ<br>持ってきてください。」
