@@ -561,81 +561,51 @@ nav{
 }
 @keyframes alertpulse{0%,100%{opacity:1}50%{opacity:.6}}
 
-/* ─── 寝返り検知AIカメラモック ─── */
-.mock-babyai{
+/* ─── 寝返り検知モック（行ベース） ─── */
+.mock-pose{
   background:#0e1117;
   width:100%;height:100%;
-  padding:14px 16px;
+  padding:16px 20px;
   display:flex;flex-direction:column;gap:10px;
 }
-.bai-header{
+.pose-header{
   display:flex;justify-content:space-between;align-items:center;
-  padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08);
+  padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08);
 }
-.bai-logo{
+.pose-logo{
   font-family:'Dela Gothic One',sans-serif;
-  font-size:13px;letter-spacing:2px;color:#5cffc8;
+  font-size:14px;letter-spacing:2px;color:#5cffc8;
 }
-.bai-live{
+.pose-live{
   display:flex;align-items:center;gap:6px;
   font-size:9px;color:#5cffc8;font-family:'Space Mono',monospace;
 }
-.bai-feeds{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-  flex:1;
+.pose-row{
+  display:flex;align-items:center;gap:12px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:10px;padding:10px 12px;
+  animation:rowIn .5s ease both;
 }
-.bai-feed{
-  border-radius:8px;
-  position:relative;
-  background:linear-gradient(145deg,#e8e3cf,#d4cdb8);
+.pose-row:nth-child(2){animation-delay:.08s}
+.pose-row:nth-child(3){animation-delay:.16s}
+.pose-row:nth-child(4){animation-delay:.24s}
+.pose-row:nth-child(5){animation-delay:.32s}
+.pose-icon{
+  width:30px;height:30px;border-radius:8px;
   display:flex;align-items:center;justify-content:center;
-  overflow:hidden;
+  font-size:14px;flex-shrink:0;
+  background:rgba(92,255,200,.1);
+  border:1px solid rgba(92,255,200,.2);
 }
-.bai-feed.pose-danger{
-  animation:dangeralert 2s ease-in-out infinite;
-}
-@keyframes dangeralert{
-  0%,100%{box-shadow:0 0 0 0 rgba(255,61,61,0)}
-  50%{box-shadow:inset 0 0 0 2px rgba(255,61,61,.25)}
-}
-.bai-detect-box{
-  position:absolute;inset:6px;
-  border-width:2px;border-style:solid;border-radius:3px;
-}
-.bai-detect-box.c-safe{border-color:#5cffc8}
-.bai-detect-box.c-warn{border-color:#3d7bff}
-.bai-detect-box.c-danger{border-color:#fff}
-.bai-detect-label{
-  position:absolute;top:-1px;left:-1px;
-  font-family:'Space Mono',monospace;
-  font-size:6.5px;font-weight:700;padding:2px 5px;line-height:1.4;
-}
-.bai-detect-label.c-safe{background:#5cffc8;color:#000}
-.bai-detect-label.c-warn{background:#3d7bff;color:#fff}
-.bai-detect-label.c-danger{background:#fff;color:#000}
-/* baby figure shapes (top-down camera view) */
-.bai-figure{
-  position:relative;z-index:1;
-  display:flex;align-items:center;justify-content:center;
-}
-.bai-figure svg{
-  width:72px;height:auto;
-  filter:drop-shadow(0 2px 5px rgba(0,0,0,0.18));
-}
-/* 危険: 斜め体勢 */
-.pose-danger .bai-figure{transform:rotate(-38deg)}
-/* feed label */
-.bai-feed-name{
-  position:absolute;bottom:5px;left:0;right:0;
-  text-align:center;
-  font-size:7px;font-family:'Space Mono',monospace;
-  font-weight:700;letter-spacing:.5px;z-index:2;
-}
-.bai-feed-name.c-safe{color:#5cffc8}
-.bai-feed-name.c-warn{color:#3d7bff}
-.bai-feed-name.c-danger{color:#ff6b6b;animation:alertpulse 1s infinite}
+.pose-info{flex:1;min-width:0}
+.pose-name{font-size:10px;color:rgba(255,255,255,.85);font-weight:500;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pose-meta{font-size:9px;color:rgba(255,255,255,.3);margin-top:2px;font-family:'Space Mono',monospace}
+.sp-safe{background:rgba(92,255,200,.15);color:#5cffc8}
+.sp-detect{background:rgba(255,224,61,.15);color:#ffe03d;animation:blink 1.5s infinite}
+.sp-alert{background:rgba(255,61,61,.2);color:#ff6b6b;animation:blink 1s infinite}
+.sp-sent{background:rgba(61,111,255,.2);color:#7099ff}
 
 /* ─── FAQ チャットボットモック（ダーク） ─── */
 .mock-chat{
@@ -725,7 +695,7 @@ nav{
 .flow-step:last-child{border-right:none}
 .flow-num{
   font-family:'Space Mono',monospace;
-  font-size:11px;color:rgba(255,255,255,.3);
+  font-size:11px;color:rgba(255,255,255,.5);
   margin-bottom:12px;letter-spacing:2px;
 }
 .flow-icon{font-size:32px;margin-bottom:12px;display:block}
@@ -733,7 +703,7 @@ nav{
   font-family:'Dela Gothic One',sans-serif;
   font-size:16px;color:#fff;margin-bottom:8px;
 }
-.flow-desc{font-size:12px;color:rgba(255,255,255,.5);line-height:1.7}
+.flow-desc{font-size:13px;color:rgba(255,255,255,.72);line-height:1.7}
 .flow-pill{
   display:inline-block;
   background:var(--pop-yellow);color:var(--ink);
@@ -908,73 +878,63 @@ footer{
 }
 .footer-copy{font-size:11px;color:rgba(255,255,255,.3);font-family:'Space Mono',monospace}
 
-/* ─── 動画生成システムモック ─── */
+/* ─── SNS投稿用動画生成モック ─── */
 .mock-vgen{
-  background:#0a0010;
+  background:#08090f;
   width:100%;height:100%;
-  padding:18px 20px;
+  padding:20px;
   display:flex;flex-direction:column;gap:10px;
 }
 .vgen-header{
   display:flex;justify-content:space-between;align-items:center;
-  padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08);
+  padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08);
 }
 .vgen-logo{
   font-family:'Dela Gothic One',sans-serif;
-  font-size:14px;letter-spacing:2px;color:#c084fc;
+  font-size:16px;letter-spacing:2px;color:#ffb347;
 }
 .vgen-status{
   display:flex;align-items:center;gap:6px;
-  font-size:9px;color:#c084fc;font-family:'Space Mono',monospace;
+  font-size:11px;color:#ffb347;font-family:'Space Mono',monospace;
 }
-.vgen-preview{
-  flex:1;
-  background:linear-gradient(135deg,#1a0830,#0d0515);
-  border:1px solid rgba(192,132,252,.2);
-  border-radius:10px;
-  position:relative;
-  overflow:hidden;
-  display:flex;align-items:center;justify-content:center;
-}
-.vgen-play{
-  width:52px;height:52px;border-radius:50%;
-  background:rgba(192,132,252,.3);
-  border:2px solid rgba(192,132,252,.7);
-  display:flex;align-items:center;justify-content:center;
-  font-size:22px;color:#fff;
-  animation:vpulse 2s ease-in-out infinite;
-}
-@keyframes vpulse{0%,100%{box-shadow:0 0 0 0 rgba(192,132,252,.4)}50%{box-shadow:0 0 0 14px rgba(192,132,252,0)}}
-.vgen-frame-dots{
-  position:absolute;bottom:8px;left:0;right:0;
-  display:flex;justify-content:center;gap:4px;
-}
-.vgen-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2)}
-.vgen-dot.active{background:#c084fc;width:16px;border-radius:999px}
-.vgen-bar-wrap{
+.vgen-row{
+  display:flex;align-items:center;gap:12px;
   background:rgba(255,255,255,.04);
   border:1px solid rgba(255,255,255,.08);
-  border-radius:8px;padding:10px 12px;
+  border-radius:10px;padding:10px 12px;
+  animation:rowIn .5s ease both;
 }
-.vgen-bar-label{font-size:9px;color:rgba(255,255,255,.3);letter-spacing:1px;font-family:'Space Mono',monospace;margin-bottom:6px}
-.vgen-bar-track{height:6px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden}
-.vgen-bar-fill{
-  height:100%;
-  background:linear-gradient(90deg,#7c3aed,#c084fc);
-  border-radius:999px;
-  animation:vfill 4s ease-in-out infinite alternate;
-}
-@keyframes vfill{from{width:30%}to{width:85%}}
-.vgen-clips{display:flex;gap:6px;margin-top:8px}
-.vgen-clip{
-  flex:1;height:26px;border-radius:6px;
-  border:1px solid rgba(255,255,255,.1);
-  background:rgba(255,255,255,.04);
+.vgen-row:nth-child(2){animation-delay:.08s}
+.vgen-row:nth-child(3){animation-delay:.16s}
+.vgen-row:nth-child(4){animation-delay:.24s}
+.vgen-row:nth-child(5){animation-delay:.32s}
+.vgen-step-icon{
+  width:30px;height:30px;border-radius:8px;
   display:flex;align-items:center;justify-content:center;
-  font-size:7px;color:rgba(255,255,255,.35);font-family:'Space Mono',monospace;
+  font-size:14px;flex-shrink:0;
+  background:rgba(255,179,71,.12);
+  border:1px solid rgba(255,179,71,.2);
 }
-.vgen-clip.done{background:rgba(192,132,252,.2);border-color:rgba(192,132,252,.4);color:#c084fc}
-.vgen-clip.gen{background:rgba(124,58,237,.3);border-color:rgba(124,58,237,.5);color:#a78bfa;animation:blink 1.5s infinite}
+.vgen-info{flex:1;min-width:0}
+.vgen-step-name{font-size:10px;color:rgba(255,255,255,.85);font-weight:500;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vgen-step-meta{font-size:9px;color:rgba(255,255,255,.3);margin-top:2px;font-family:'Space Mono',monospace}
+.sv-done{background:rgba(92,255,200,.15);color:#5cffc8}
+.sv-gen{background:rgba(255,179,71,.2);color:#ffb347;animation:blink 1.5s infinite}
+.sv-wait{background:rgba(255,255,255,.06);color:rgba(255,255,255,.3)}
+.vgen-prog{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);
+  border-radius:8px;padding:8px 12px;
+}
+.vgen-prog-label{font-size:8px;color:rgba(255,255,255,.3);font-family:'Space Mono',monospace;margin-bottom:5px}
+.vgen-prog-track{height:5px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden}
+.vgen-prog-fill{
+  height:100%;
+  background:linear-gradient(90deg,#ff7043,#ffb347);
+  border-radius:999px;
+  animation:vprogfill 3s ease-in-out infinite alternate;
+}
+@keyframes vprogfill{from{width:40%}to{width:72%}}
 
 /* ─── レシート家計簿モック（ダーク） ─── */
 .mock-receipt{
@@ -1434,9 +1394,49 @@ footer{
 
       <!-- SNS投稿用動画生成アプリ -->
       <div class="work-card">
-        <div class="work-screen" style="position:relative;">
-          <img src="figure/sns-video-generator-flow.png" alt="SNS投稿用動画生成アプリの生成フロー" style="width:100%;height:100%;object-fit:contain;background:#f5f5f0;display:block;">
-          <div style="position:absolute;bottom:0;right:0;width:90px;height:32px;background:#f5f5f0;"></div>
+        <div class="work-screen">
+          <div class="mock-vgen">
+            <div class="vgen-header">
+              <span class="vgen-logo">VIDEO GEN</span>
+              <span class="vgen-status"><span style="width:7px;height:7px;border-radius:50%;background:#ffb347;display:inline-block;animation:blink 1s infinite;margin-right:4px"></span>GEN</span>
+            </div>
+            <div class="vgen-row">
+              <div class="vgen-step-icon">📝</div>
+              <div class="vgen-info">
+                <div class="vgen-step-name">スクリプト生成</div>
+                <div class="vgen-step-meta">GPT-4o · 1.2s</div>
+              </div>
+              <span class="status-pill sv-done">DONE</span>
+            </div>
+            <div class="vgen-row">
+              <div class="vgen-step-icon">🎙️</div>
+              <div class="vgen-info">
+                <div class="vgen-step-name">ナレーション合成</div>
+                <div class="vgen-step-meta">TTS · ElevenLabs</div>
+              </div>
+              <span class="status-pill sv-done">DONE</span>
+            </div>
+            <div class="vgen-row">
+              <div class="vgen-step-icon">🎬</div>
+              <div class="vgen-info">
+                <div class="vgen-step-name">映像アセンブル</div>
+                <div class="vgen-step-meta">FFmpeg · processing</div>
+              </div>
+              <span class="status-pill sv-gen">GEN</span>
+            </div>
+            <div class="vgen-row">
+              <div class="vgen-step-icon">📤</div>
+              <div class="vgen-info">
+                <div class="vgen-step-name">SNS書き出し</div>
+                <div class="vgen-step-meta">9:16 · TikTok / IG</div>
+              </div>
+              <span class="status-pill sv-wait">WAIT</span>
+            </div>
+            <div class="vgen-prog">
+              <div class="vgen-prog-label">RENDER PROGRESS</div>
+              <div class="vgen-prog-track"><div class="vgen-prog-fill"></div></div>
+            </div>
+          </div>
         </div>
         <div class="work-body">
           <div class="work-tag-pill">SOCIAL VIDEO AUTOMATION</div>
@@ -1448,7 +1448,44 @@ footer{
       <!-- 寝返り検知アプリ -->
       <div class="work-card">
         <div class="work-screen">
-          <img src="figure/baby.png" alt="赤ちゃんの姿勢検知・緊急通知システム" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div class="mock-pose">
+            <div class="pose-header">
+              <span class="pose-logo">BABY MONITOR</span>
+              <span class="pose-live"><span style="width:7px;height:7px;border-radius:50%;background:#5cffc8;display:inline-block;animation:blink 1s infinite;margin-right:4px"></span>LIVE</span>
+            </div>
+            <div class="pose-row">
+              <div class="pose-icon">👶</div>
+              <div class="pose-info">
+                <div class="pose-name">体勢モニタリング</div>
+                <div class="pose-meta">CAM-01 · 00:12:34</div>
+              </div>
+              <span class="status-pill sp-safe">SAFE</span>
+            </div>
+            <div class="pose-row">
+              <div class="pose-icon">🔄</div>
+              <div class="pose-info">
+                <div class="pose-name">寝返り検知</div>
+                <div class="pose-meta">うつ伏せ → 仰向け</div>
+              </div>
+              <span class="status-pill sp-detect">DETECT</span>
+            </div>
+            <div class="pose-row">
+              <div class="pose-icon">⚠️</div>
+              <div class="pose-info">
+                <div class="pose-name">緊急アラート</div>
+                <div class="pose-meta">危険姿勢を検出</div>
+              </div>
+              <span class="status-pill sp-alert">ALERT</span>
+            </div>
+            <div class="pose-row">
+              <div class="pose-icon">📲</div>
+              <div class="pose-info">
+                <div class="pose-name">LINE通知</div>
+                <div class="pose-meta">保護者へ即時送信</div>
+              </div>
+              <span class="status-pill sp-sent">SENT</span>
+            </div>
+          </div>
         </div>
         <div class="work-body">
           <div class="work-tag-pill">CAMERA AI</div>
@@ -1486,9 +1523,41 @@ footer{
 
       <!-- レシート自動家計簿 -->
       <div class="work-card">
-        <div class="work-screen" style="position:relative;">
-          <img src="figure/OCR.png" alt="レシート自動家計簿システム" style="width:100%;height:100%;object-fit:contain;background:#e8f2f8;display:block;">
-          <div style="position:absolute;bottom:0;right:0;width:90px;height:32px;background:#e8f2f8;"></div>
+        <div class="work-screen">
+          <div class="mock-receipt">
+            <div class="receipt-header">
+              <span class="receipt-logo">KAKEIBO AI</span>
+              <span class="receipt-badge">SCAN READY</span>
+            </div>
+            <div class="receipt-scan-row">
+              <div class="receipt-scan-icon">🧾</div>
+              <div class="receipt-scan-info">
+                <div class="receipt-scan-name">レシートOCR解析中...</div>
+                <div class="receipt-scan-sub">スーパー購入 · ¥3,240</div>
+              </div>
+            </div>
+            <div class="receipt-items">
+              <div class="receipt-item">
+                <span class="receipt-cat cat-food"></span>
+                <span class="receipt-item-name">牛乳 · 卵 · パン</span>
+                <span class="receipt-item-price">¥980</span>
+              </div>
+              <div class="receipt-item">
+                <span class="receipt-cat cat-daily"></span>
+                <span class="receipt-item-name">洗剤 · シャンプー</span>
+                <span class="receipt-item-price">¥1,280</span>
+              </div>
+              <div class="receipt-item">
+                <span class="receipt-cat cat-other"></span>
+                <span class="receipt-item-name">その他</span>
+                <span class="receipt-item-price">¥980</span>
+              </div>
+            </div>
+            <div class="receipt-total">
+              <span class="receipt-total-label">TOTAL</span>
+              <span class="receipt-total-num">¥3,240</span>
+            </div>
+          </div>
         </div>
         <div class="work-body">
           <div class="work-tag-pill">RECEIPT AI</div>
@@ -1667,7 +1736,7 @@ footer{
   <div class="cta-inner">
     <div class="cta-tag">FREE CONSULTATION</div>
     <h2 class="cta-h">アイデア、<br><span>丸投げして</span><br>ください。</h2>
-    <p class="cta-desc">まずは無料相談から。あなたの「こんなものが欲しい」を<br>形にするために、全力で取り組みます。</p>
+    <p class="cta-desc">まずは無料相談から。あなたの「こんなものが欲しい」を形にするために、全力で取り組みます。</p>
     <form class="contact-form" id="contact-form"
           action="https://api.web3forms.com/submit" method="POST">
       <!-- Web3Forms 設定 (https://web3forms.com でメールアドレスを入力してアクセスキーを取得) -->
