@@ -1090,11 +1090,22 @@ footer{
   .bai-detect-label{font-size:5.5px}
 }
 /* ─── Lucide icons ─── */
-[data-lucide]{display:block;stroke-width:1.75;pointer-events:none}
-.platform-icon [data-lucide]{width:14px;height:14px;stroke:#fff;fill:none}
-.vgen-step-icon [data-lucide]{width:14px;height:14px;stroke:#ffb347;fill:none}
-.pose-icon [data-lucide]{width:14px;height:14px;stroke:#5cffc8;fill:none}
-.receipt-scan-icon [data-lucide]{width:22px;height:22px;stroke:#2ecc71;fill:none}
+[data-lucide]{display:block;stroke-width:1.75;pointer-events:none;fill:none}
+/* work card mocks */
+.platform-icon [data-lucide]{width:14px;height:14px;stroke:#fff}
+.vgen-step-icon [data-lucide]{width:14px;height:14px;stroke:#ffb347}
+.pose-icon [data-lucide]{width:14px;height:14px;stroke:#5cffc8}
+.receipt-scan-icon [data-lucide]{width:22px;height:22px;stroke:#2ecc71}
+/* page-wide */
+.ex-icon{display:flex;align-items:center}
+.ex-icon [data-lucide]{width:26px;height:26px;stroke-width:1.5;stroke:currentColor}
+.cat-label [data-lucide]{width:17px;height:17px;stroke-width:2;stroke:currentColor;flex-shrink:0}
+.flow-icon [data-lucide]{width:30px;height:30px;stroke-width:1.5;stroke:rgba(255,255,255,.85)}
+.btn-hero-main{display:inline-flex !important;align-items:center;gap:8px}
+.btn-hero-main [data-lucide]{width:15px;height:15px;stroke-width:2.5;stroke:currentColor;flex-shrink:0}
+.btn-form-submit{display:flex !important;width:100%;align-items:center;justify-content:center;gap:8px}
+.btn-form-submit [data-lucide]{width:16px;height:16px;stroke-width:2.5;stroke:currentColor;flex-shrink:0}
+.float-badge [data-lucide]{width:13px;height:13px;stroke-width:2.5;stroke:currentColor}
 </style>
 </head>
 <body>
@@ -1119,7 +1130,7 @@ footer{
     </h1>
     <p class="hero-sub">僕、飯田がAIエンジニアとして10万円からあなたのサービスを作ります。サーバーやAPIなど難しいことは全部こっちでやるので、アイデアを丸投げしてください。</p>
     <div class="hero-ctas">
-      <a href="#contact" class="btn-hero-main">🔥 無料で相談する</a>
+      <a href="#contact" class="btn-hero-main"><i data-lucide="flame"></i> 無料で相談する</a>
       <a href="#works" class="btn-hero-sub">実績を見る →</a>
     </div>
     <div class="hero-stats">
@@ -1154,7 +1165,7 @@ footer{
         「難しいことは全部僕がやります。あなたはアイデアだけ持ってきてください。最短で形にします。」
       </div>
     </div>
-    <div class="float-badge float-badge-2">💬 丸投げOK！</div>
+    <div class="float-badge float-badge-2"><i data-lucide="message-circle"></i> 丸投げOK！</div>
   </div>
 </div>
 </div>
@@ -1193,25 +1204,25 @@ footer{
 
     <!-- SNS・コンテンツ自動化系 -->
     <div class="cat-block sns reveal">
-      <div class="cat-label sns">📱 SNS・コンテンツ自動化系</div>
+      <div class="cat-label sns"><i data-lucide="share-2"></i> SNS・コンテンツ自動化系</div>
       <div class="examples-grid">
         <div class="ex-card">
-          <span class="ex-icon">📤</span>
+          <span class="ex-icon"><i data-lucide="send"></i></span>
           <div class="ex-title">SNS自動投稿</div>
           <div class="ex-desc">Instagram・X・TikTok・YouTubeなど各種SNSへAIがキャプション生成＆ハッシュタグ最適化。スケジュール設定で複数プラットフォームへ一括投稿。</div>
         </div>
         <div class="ex-card">
-          <span class="ex-icon">✂️</span>
+          <span class="ex-icon"><i data-lucide="scissors"></i></span>
           <div class="ex-title">切り抜き動画自動生成</div>
           <div class="ex-desc">長尺動画をAIが解析。バズるシーンを自動検出→切り抜き→テロップ付きで完成。</div>
         </div>
         <div class="ex-card">
-          <span class="ex-icon">🎬</span>
+          <span class="ex-icon"><i data-lucide="clapperboard"></i></span>
           <div class="ex-title">SNS投稿用動画生成アプリ</div>
           <div class="ex-desc">簡単なコンセプト入力だけでAIが企画から動画生成、SNS別プレビュー確認、直接投稿まで一気通貫で対応。</div>
         </div>
         <div class="ex-card">
-          <span class="ex-icon">💬</span>
+          <span class="ex-icon"><i data-lucide="message-square"></i></span>
           <div class="ex-title">コメント・DM自動返信</div>
           <div class="ex-desc">SNSへの問い合わせコメントやDMにAIが自動応答。トーン・内容をカスタマイズして24時間対応。</div>
         </div>
@@ -1220,45 +1231,45 @@ footer{
 
     <!-- ビジネス効率化系 -->
     <div class="cat-block biz reveal">
-      <div class="cat-label biz">💼 ビジネス効率化系</div>
+      <div class="cat-label biz"><i data-lucide="briefcase"></i> ビジネス効率化系</div>
       <div class="examples-grid">
         <div class="ex-card">
-          <span class="ex-icon">🎙️</span>
+          <span class="ex-icon"><i data-lucide="mic"></i></span>
           <div class="ex-title">会議音声→議事録テキスト自動作成</div>
           <div class="ex-desc">録音するだけ。AIが文字起こし→要点整理→議事録フォーマットで自動出力。</div>
         </div>
         <div class="ex-card">
-          <span class="ex-icon">✉️</span>
+          <span class="ex-icon"><i data-lucide="mail"></i></span>
           <div class="ex-title">メール誤送信チェッカー</div>
           <div class="ex-desc">送信前にAIが宛先・添付・内容を自動チェック。うっかりミスを未然に防ぐ。</div>
         </div>
         <div class="ex-card">
-          <span class="ex-icon">📝</span>
+          <span class="ex-icon"><i data-lucide="file-text"></i></span>
           <div class="ex-title">資料ドラフト作成</div>
           <div class="ex-desc">テーマを話すだけでAIが提案書・企画書の初稿を自動生成。編集コストを激減。</div>
         </div>
         <div class="ex-card">
-          <span class="ex-icon">🤖</span>
+          <span class="ex-icon"><i data-lucide="bot"></i></span>
           <div class="ex-title">社内文書検索・FAQチャットボット</div>
           <div class="ex-desc">社内マニュアルをAIが学習。「あの規定どこだっけ？」を即解決するチャットBot。</div>
         </div>
         <div class="ex-card">
-          <span class="ex-icon">📰</span>
+          <span class="ex-icon"><i data-lucide="newspaper"></i></span>
           <div class="ex-title">トレンドニュース・市場調査システム</div>
           <div class="ex-desc">毎朝AIが業界ニュースを自動収集・要約・レポート化。情報収集コストゼロへ。</div>
         </div>
         <div class="ex-card">
-          <span class="ex-icon">📊</span>
+          <span class="ex-icon"><i data-lucide="bar-chart-2"></i></span>
           <div class="ex-title">営業の顧客管理アプリ</div>
           <div class="ex-desc">商談状況・連絡先・履歴をAIで整理。チーム全員がリアルタイムで共有できる。</div>
         </div>
         <div class="ex-card">
-          <span class="ex-icon">👥</span>
+          <span class="ex-icon"><i data-lucide="users"></i></span>
           <div class="ex-title">社員100人の情報をAIで自動データ化</div>
           <div class="ex-desc">書類・名刺・履歴書をアップするだけでデータベース自動構築。手入力ゼロ。</div>
         </div>
         <div class="ex-card">
-          <span class="ex-icon">🔊</span>
+          <span class="ex-icon"><i data-lucide="volume-2"></i></span>
           <div class="ex-title">音声タスク自動登録アプリ</div>
           <div class="ex-desc">「〇〇を△△までに担当：草野さん」と話すだけでNotionへ自動登録。移動中も10秒完了。</div>
         </div>
@@ -1267,25 +1278,25 @@ footer{
 
     <!-- カメラ・画像認識系 -->
     <div class="cat-block cam reveal">
-      <div class="cat-label cam">📷 カメラ・画像認識系</div>
+      <div class="cat-label cam"><i data-lucide="camera"></i> カメラ・画像認識系</div>
       <div class="examples-grid">
         <div class="ex-card">
-          <span class="ex-icon">👶</span>
+          <span class="ex-icon"><i data-lucide="scan-face"></i></span>
           <div class="ex-title">カメラでこどもの寝返りを検知して通知</div>
           <div class="ex-desc">AIが映像をリアルタイム解析。危険な体勢を検知したらスマホへ即プッシュ通知。</div>
         </div>
         <div class="ex-card">
-          <span class="ex-icon">🔍</span>
+          <span class="ex-icon"><i data-lucide="search"></i></span>
           <div class="ex-title">カメラ映像から部品検品</div>
           <div class="ex-desc">カメラをかざすだけでAIが不良品を自動検出。検品時間・コストを大幅削減。</div>
         </div>
         <div class="ex-card">
-          <span class="ex-icon">🧾</span>
+          <span class="ex-icon"><i data-lucide="receipt"></i></span>
           <div class="ex-title">レシートを撮るだけで自動で家計簿に記録・グラフ化</div>
           <div class="ex-desc">撮影→金額・店名・カテゴリを自動認識→家計簿に即登録。グラフも自動生成。</div>
         </div>
         <div class="ex-card">
-          <span class="ex-icon">🏷️</span>
+          <span class="ex-icon"><i data-lucide="tag"></i></span>
           <div class="ex-title">画像で商品を自動で仕訳</div>
           <div class="ex-desc">写真を撮るだけでAIが商品認識して会計ソフトへ自動カテゴリ登録。仕訳ゼロへ。</div>
         </div>
@@ -1295,7 +1306,7 @@ footer{
     <!-- あなたのアイデア -->
     <div class="reveal" style="margin-top:24px;display:flex;justify-content:center">
       <div class="ex-card" style="background:var(--pop-yellow);border-style:dashed;border-width:2px;max-width:320px">
-        <span class="ex-icon">💡</span>
+        <span class="ex-icon"><i data-lucide="lightbulb"></i></span>
         <div class="ex-title">あなたのアイデアはなんですか？</div>
         <div class="ex-desc">上記以外でもOK。「こんなの作れる？」をまず気軽に聞いてください。</div>
       </div>
@@ -1598,38 +1609,38 @@ footer{
     <div class="flow-track reveal">
       <div class="flow-step">
         <div class="flow-num">STEP 01</div>
-        <div class="flow-icon">📝</div>
+        <div class="flow-icon"><i data-lucide="file-text"></i></div>
         <div class="flow-title">フォーム記入</div>
         <div class="flow-desc">作りたいものの概要をフォームに入力。「なんとなく」でもOK。</div>
       </div>
       <div class="flow-step">
         <div class="flow-num">STEP 02</div>
-        <div class="flow-icon">💬</div>
+        <div class="flow-icon"><i data-lucide="message-circle"></i></div>
         <div class="flow-title">打ち合わせ</div>
         <div class="flow-desc">担当者とオンラインで30分ヒアリング。詳細を一緒に整理します。</div>
       </div>
       <div class="flow-step">
         <div class="flow-num">STEP 03</div>
-        <div class="flow-icon">💰</div>
+        <div class="flow-icon"><i data-lucide="banknote"></i></div>
         <div class="flow-title">お見積り</div>
         <div class="flow-desc">内容・期間・費用を明確に提示。納得できたら進めます。</div>
       </div>
       <div class="flow-step">
         <div class="flow-num">STEP 04</div>
-        <div class="flow-icon">⚡</div>
+        <div class="flow-icon"><i data-lucide="zap"></i></div>
         <div class="flow-title">開発スタート</div>
         <div class="flow-desc">確定後、最短当日から開発開始。スピード最優先で動きます。</div>
         <div class="flow-pill">最短1日〜</div>
       </div>
       <div class="flow-step">
         <div class="flow-num">STEP 05</div>
-        <div class="flow-icon">🔄</div>
+        <div class="flow-icon"><i data-lucide="refresh-cw"></i></div>
         <div class="flow-title">フィードバック</div>
         <div class="flow-desc">修正・調整をスピーディに対応。満足いくまで一緒に作ります。</div>
       </div>
       <div class="flow-step">
         <div class="flow-num">STEP 06</div>
-        <div class="flow-icon">🚀</div>
+        <div class="flow-icon"><i data-lucide="rocket"></i></div>
         <div class="flow-title">納品！</div>
         <div class="flow-desc">本番環境にデプロイして完成。使い方も丁寧にレクチャーします。</div>
       </div>
@@ -1769,11 +1780,11 @@ footer{
           placeholder="「こういうことを自動化したい」「こんなアプリが欲しい」など、なんとなくでもOKです！"
           required></textarea>
       </div>
-      <button type="submit" class="btn-form-submit" id="submit-btn">🚀 無料相談を申し込む</button>
+      <button type="submit" class="btn-form-submit" id="submit-btn"><i data-lucide="send"></i> 無料相談を申し込む</button>
     </form>
     <!-- 送信完了メッセージ -->
     <div id="form-success" style="display:none;text-align:center;padding:56px 20px">
-      <div style="font-size:56px;margin-bottom:20px">✅</div>
+      <div style="margin-bottom:20px;display:flex;justify-content:center"><i data-lucide="check-circle" style="width:56px;height:56px;stroke:#5cffc8;stroke-width:1.5;fill:none"></i></div>
       <div style="font-family:'Dela Gothic One',sans-serif;font-size:26px;color:#fff;margin-bottom:14px">送信完了！</div>
       <div style="color:rgba(255,255,255,.65);font-size:15px;line-height:1.9">
         お問い合わせありがとうございます。<br>飯田より2〜3営業日以内にご連絡します。
