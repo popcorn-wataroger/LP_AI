@@ -618,24 +618,14 @@ nav{
 /* baby figure shapes (top-down camera view) */
 .bai-figure{
   position:relative;z-index:1;
-  display:flex;align-items:center;
+  display:flex;align-items:center;justify-content:center;
 }
-.baby-torso{
-  width:38px;height:21px;border-radius:999px;
-  border:1px solid rgba(0,0,0,.08);
+.bai-figure svg{
+  width:72px;height:auto;
+  filter:drop-shadow(0 2px 5px rgba(0,0,0,0.18));
 }
-.baby-hd{
-  width:18px;height:18px;border-radius:50%;
-  border:1px solid rgba(0,0,0,.08);margin-left:-4px;
-}
-/* 仰向け: 明るいスキントーン */
-.pose-up .baby-torso,.pose-up .baby-hd{background:#f0c090}
-/* うつ伏せ: 暗めトーン＋影でうつ伏せ感 */
-.pose-down .baby-torso{background:#c8924a;box-shadow:0 3px 6px rgba(0,0,0,.18)}
-.pose-down .baby-hd{background:#c8924a}
 /* 危険: 斜め体勢 */
 .pose-danger .bai-figure{transform:rotate(-38deg)}
-.pose-danger .baby-torso,.pose-danger .baby-hd{background:#f0c090}
 /* feed label */
 .bai-feed-name{
   position:absolute;bottom:5px;left:0;right:0;
@@ -1208,7 +1198,7 @@ footer{
   <div class="ticker-inner">
     <span class="tick-item">SNS自動投稿</span>
     <span class="tick-item">切り抜き動画自動生成</span>
-    <span class="tick-item">企画コンセプト動画</span>
+    <span class="tick-item">SNS投稿用動画生成</span>
     <span class="tick-item">議事録自動作成</span>
     <span class="tick-item">顧客管理アプリ</span>
     <span class="tick-item">社内文書検索Bot</span>
@@ -1218,7 +1208,7 @@ footer{
     <span class="tick-item">部品検品AI</span>
     <span class="tick-item">SNS自動投稿</span>
     <span class="tick-item">切り抜き動画自動生成</span>
-    <span class="tick-item">企画コンセプト動画</span>
+    <span class="tick-item">SNS投稿用動画生成</span>
     <span class="tick-item">議事録自動作成</span>
     <span class="tick-item">顧客管理アプリ</span>
     <span class="tick-item">社内文書検索Bot</span>
@@ -1251,8 +1241,8 @@ footer{
         </div>
         <div class="ex-card">
           <span class="ex-icon">🎬</span>
-          <div class="ex-title">企画コンセプト動画生成</div>
-          <div class="ex-desc">キーワードを入れるだけでAIが企画案を複数生成。台本から絵コンテまで自動化。</div>
+          <div class="ex-title">SNS投稿用動画生成アプリ</div>
+          <div class="ex-desc">簡単なコンセプト入力だけでAIが企画から動画生成、SNS別プレビュー確認、直接投稿まで一気通貫で対応。</div>
         </div>
         <div class="ex-card">
           <span class="ex-icon">💬</span>
@@ -1442,87 +1432,23 @@ footer{
         </div>
       </div>
 
-      <!-- 企画コンセプト動画生成 -->
+      <!-- SNS投稿用動画生成アプリ -->
       <div class="work-card">
-        <div class="work-screen">
-          <div class="mock-vgen">
-            <div class="vgen-header">
-              <div class="vgen-logo">VIDEO GEN AI</div>
-              <div class="vgen-status"><span class="live-dot" style="background:#c084fc"></span>生成中</div>
-            </div>
-            <div class="vgen-preview">
-              <div class="vgen-play">▶</div>
-              <div class="vgen-frame-dots">
-                <div class="vgen-dot active"></div>
-                <div class="vgen-dot"></div>
-                <div class="vgen-dot"></div>
-                <div class="vgen-dot"></div>
-                <div class="vgen-dot"></div>
-              </div>
-            </div>
-            <div class="vgen-bar-wrap">
-              <div class="vgen-bar-label">AI VIDEO GENERATION — 68%</div>
-              <div class="vgen-bar-track"><div class="vgen-bar-fill"></div></div>
-              <div class="vgen-clips">
-                <div class="vgen-clip done">SCENE 01</div>
-                <div class="vgen-clip done">SCENE 02</div>
-                <div class="vgen-clip gen">SCENE 03</div>
-                <div class="vgen-clip">SCENE 04</div>
-              </div>
-            </div>
-          </div>
+        <div class="work-screen" style="position:relative;">
+          <img src="figure/sns-video-generator-flow.png" alt="SNS投稿用動画生成アプリの生成フロー" style="width:100%;height:100%;object-fit:contain;background:#f5f5f0;display:block;">
+          <div style="position:absolute;bottom:0;right:0;width:90px;height:32px;background:#f5f5f0;"></div>
         </div>
         <div class="work-body">
-          <div class="work-tag-pill">AI VIDEO CONCEPT</div>
-          <div class="work-title">企画コンセプト動画生成システム</div>
-          <div class="work-desc">キーワードを入力するだけでAIが複数の企画コンセプトを生成。採用案をもとに台本・絵コンテ・ナレーション原稿まで自動出力。企画工数を大幅削減。</div>
+          <div class="work-tag-pill">SOCIAL VIDEO AUTOMATION</div>
+          <div class="work-title">SNS投稿用動画生成アプリ</div>
+          <div class="work-desc">簡単なコンセプト入力だけでAIが企画・構成から動画を自動生成し、各SNSに最適化されたプレビュー確認と直接投稿までをワンストップで完結。</div>
         </div>
       </div>
 
       <!-- 寝返り検知アプリ -->
       <div class="work-card">
         <div class="work-screen">
-          <div class="mock-babyai">
-            <div class="bai-header">
-              <div class="bai-logo">POSE DETECT AI</div>
-              <div class="bai-live"><span class="live-dot"></span>稼働中</div>
-            </div>
-            <div class="bai-feeds">
-              <!-- 仰向け -->
-              <div class="bai-feed pose-up">
-                <div class="bai-detect-box c-safe">
-                  <div class="bai-detect-label c-safe">FaceUp 0.95</div>
-                </div>
-                <div class="bai-figure">
-                  <div class="baby-torso"></div>
-                  <div class="baby-hd"></div>
-                </div>
-                <div class="bai-feed-name c-safe">仰向け</div>
-              </div>
-              <!-- うつ伏せ -->
-              <div class="bai-feed pose-down">
-                <div class="bai-detect-box c-warn">
-                  <div class="bai-detect-label c-warn">FaceDown 0.96</div>
-                </div>
-                <div class="bai-figure">
-                  <div class="baby-torso"></div>
-                  <div class="baby-hd"></div>
-                </div>
-                <div class="bai-feed-name c-warn">うつ伏せ</div>
-              </div>
-              <!-- 危険 -->
-              <div class="bai-feed pose-danger">
-                <div class="bai-detect-box c-danger">
-                  <div class="bai-detect-label c-danger">Danger 0.97</div>
-                </div>
-                <div class="bai-figure">
-                  <div class="baby-torso"></div>
-                  <div class="baby-hd"></div>
-                </div>
-                <div class="bai-feed-name c-danger">危険検知</div>
-              </div>
-            </div>
-          </div>
+          <img src="figure/baby.png" alt="赤ちゃんの姿勢検知・緊急通知システム" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
         <div class="work-body">
           <div class="work-tag-pill">CAMERA AI</div>
@@ -1560,46 +1486,9 @@ footer{
 
       <!-- レシート自動家計簿 -->
       <div class="work-card">
-        <div class="work-screen">
-          <div class="mock-receipt">
-            <div class="receipt-header">
-              <div class="receipt-logo">RECEIPT AI</div>
-              <div class="receipt-badge">自動認識</div>
-            </div>
-            <div class="receipt-scan-row">
-              <div class="receipt-scan-icon">🧾</div>
-              <div class="receipt-scan-info">
-                <div class="receipt-scan-name">スーパーマルエツ 新宿店</div>
-                <div class="receipt-scan-sub">2024.03.15 / OCR解析完了</div>
-              </div>
-            </div>
-            <div class="receipt-items">
-              <div class="receipt-item">
-                <div class="receipt-cat cat-food"></div>
-                <div class="receipt-item-name">牛乳 1本</div>
-                <div class="receipt-item-price">¥198</div>
-              </div>
-              <div class="receipt-item">
-                <div class="receipt-cat cat-food"></div>
-                <div class="receipt-item-name">食パン 1袋</div>
-                <div class="receipt-item-price">¥158</div>
-              </div>
-              <div class="receipt-item">
-                <div class="receipt-cat cat-daily"></div>
-                <div class="receipt-item-name">シャンプー</div>
-                <div class="receipt-item-price">¥498</div>
-              </div>
-              <div class="receipt-item">
-                <div class="receipt-cat cat-food"></div>
-                <div class="receipt-item-name">野菜セット</div>
-                <div class="receipt-item-price">¥320</div>
-              </div>
-            </div>
-            <div class="receipt-total">
-              <div class="receipt-total-label">TOTAL</div>
-              <div class="receipt-total-num">¥1,174</div>
-            </div>
-          </div>
+        <div class="work-screen" style="position:relative;">
+          <img src="figure/OCR.png" alt="レシート自動家計簿システム" style="width:100%;height:100%;object-fit:contain;background:#e8f2f8;display:block;">
+          <div style="position:absolute;bottom:0;right:0;width:90px;height:32px;background:#e8f2f8;"></div>
         </div>
         <div class="work-body">
           <div class="work-tag-pill">RECEIPT AI</div>
