@@ -1089,6 +1089,12 @@ footer{
   .bai-feeds{gap:6px}
   .bai-detect-label{font-size:5.5px}
 }
+/* ─── Lucide icons ─── */
+[data-lucide]{display:block;stroke-width:1.75;pointer-events:none}
+.platform-icon [data-lucide]{width:14px;height:14px;stroke:#fff;fill:none}
+.vgen-step-icon [data-lucide]{width:14px;height:14px;stroke:#ffb347;fill:none}
+.pose-icon [data-lucide]{width:14px;height:14px;stroke:#5cffc8;fill:none}
+.receipt-scan-icon [data-lucide]{width:22px;height:22px;stroke:#2ecc71;fill:none}
 </style>
 </head>
 <body>
@@ -1352,7 +1358,7 @@ footer{
               <div class="mock-live"><span class="live-dot"></span>稼働中</div>
             </div>
             <div class="post-row">
-              <div class="platform-icon pi-ig">📷</div>
+              <div class="platform-icon pi-ig"><i data-lucide="instagram"></i></div>
               <div class="post-info">
                 <div class="post-name">インスタストーリー — 今夜21:00投稿予定</div>
                 <div class="post-meta">Instagram Story • SCHEDULED</div>
@@ -1360,7 +1366,7 @@ footer{
               <span class="status-pill s-sched">SCHED</span>
             </div>
             <div class="post-row">
-              <div class="platform-icon pi-x">𝕏</div>
+              <div class="platform-icon pi-x"><i data-lucide="twitter"></i></div>
               <div class="post-info">
                 <div class="post-name">AIキャプション生成中…</div>
                 <div class="post-meta">X (Twitter) • PROCESSING</div>
@@ -1368,7 +1374,7 @@ footer{
               <span class="status-pill s-proc">PROC</span>
             </div>
             <div class="post-row">
-              <div class="platform-icon pi-ig">📷</div>
+              <div class="platform-icon pi-ig"><i data-lucide="instagram"></i></div>
               <div class="post-info">
                 <div class="post-name">週次投稿 — 完了</div>
                 <div class="post-meta">Instagram • 昨日 18:00</div>
@@ -1376,7 +1382,7 @@ footer{
               <span class="status-pill s-done">DONE</span>
             </div>
             <div class="post-row">
-              <div class="platform-icon pi-x">𝕏</div>
+              <div class="platform-icon pi-x"><i data-lucide="twitter"></i></div>
               <div class="post-info">
                 <div class="post-name">トレンドポスト — 明日 08:00</div>
                 <div class="post-meta">X (Twitter) • SCHEDULED</div>
@@ -1401,7 +1407,7 @@ footer{
               <span class="vgen-status"><span style="width:7px;height:7px;border-radius:50%;background:#ffb347;display:inline-block;animation:blink 1s infinite;margin-right:4px"></span>GEN</span>
             </div>
             <div class="vgen-row">
-              <div class="vgen-step-icon">📝</div>
+              <div class="vgen-step-icon"><i data-lucide="file-text"></i></div>
               <div class="vgen-info">
                 <div class="vgen-step-name">スクリプト生成</div>
                 <div class="vgen-step-meta">GPT-4o · 1.2s</div>
@@ -1409,7 +1415,7 @@ footer{
               <span class="status-pill sv-done">DONE</span>
             </div>
             <div class="vgen-row">
-              <div class="vgen-step-icon">🎙️</div>
+              <div class="vgen-step-icon"><i data-lucide="mic"></i></div>
               <div class="vgen-info">
                 <div class="vgen-step-name">ナレーション合成</div>
                 <div class="vgen-step-meta">TTS · ElevenLabs</div>
@@ -1417,7 +1423,7 @@ footer{
               <span class="status-pill sv-done">DONE</span>
             </div>
             <div class="vgen-row">
-              <div class="vgen-step-icon">🎬</div>
+              <div class="vgen-step-icon"><i data-lucide="clapperboard"></i></div>
               <div class="vgen-info">
                 <div class="vgen-step-name">映像アセンブル</div>
                 <div class="vgen-step-meta">FFmpeg · processing</div>
@@ -1425,7 +1431,7 @@ footer{
               <span class="status-pill sv-gen">GEN</span>
             </div>
             <div class="vgen-row">
-              <div class="vgen-step-icon">📤</div>
+              <div class="vgen-step-icon"><i data-lucide="send"></i></div>
               <div class="vgen-info">
                 <div class="vgen-step-name">SNS書き出し</div>
                 <div class="vgen-step-meta">9:16 · TikTok / IG</div>
@@ -1454,7 +1460,7 @@ footer{
               <span class="pose-live"><span style="width:7px;height:7px;border-radius:50%;background:#5cffc8;display:inline-block;animation:blink 1s infinite;margin-right:4px"></span>LIVE</span>
             </div>
             <div class="pose-row">
-              <div class="pose-icon">👶</div>
+              <div class="pose-icon"><i data-lucide="scan-face"></i></div>
               <div class="pose-info">
                 <div class="pose-name">体勢モニタリング</div>
                 <div class="pose-meta">CAM-01 · 00:12:34</div>
@@ -1462,7 +1468,7 @@ footer{
               <span class="status-pill sp-safe">SAFE</span>
             </div>
             <div class="pose-row">
-              <div class="pose-icon">🔄</div>
+              <div class="pose-icon"><i data-lucide="refresh-cw"></i></div>
               <div class="pose-info">
                 <div class="pose-name">寝返り検知</div>
                 <div class="pose-meta">うつ伏せ → 仰向け</div>
@@ -1470,7 +1476,7 @@ footer{
               <span class="status-pill sp-detect">DETECT</span>
             </div>
             <div class="pose-row">
-              <div class="pose-icon">⚠️</div>
+              <div class="pose-icon"><i data-lucide="alert-triangle"></i></div>
               <div class="pose-info">
                 <div class="pose-name">緊急アラート</div>
                 <div class="pose-meta">危険姿勢を検出</div>
@@ -1478,7 +1484,7 @@ footer{
               <span class="status-pill sp-alert">ALERT</span>
             </div>
             <div class="pose-row">
-              <div class="pose-icon">📲</div>
+              <div class="pose-icon"><i data-lucide="smartphone"></i></div>
               <div class="pose-info">
                 <div class="pose-name">LINE通知</div>
                 <div class="pose-meta">保護者へ即時送信</div>
@@ -1530,7 +1536,7 @@ footer{
               <span class="receipt-badge">SCAN READY</span>
             </div>
             <div class="receipt-scan-row">
-              <div class="receipt-scan-icon">🧾</div>
+              <div class="receipt-scan-icon"><i data-lucide="scan-line"></i></div>
               <div class="receipt-scan-info">
                 <div class="receipt-scan-name">レシートOCR解析中...</div>
                 <div class="receipt-scan-sub">スーパー購入 · ¥3,240</div>
@@ -1821,5 +1827,6 @@ const obs=new IntersectionObserver(entries=>{
 },{threshold:.08,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" onload="lucide.createIcons()"></script>
 </body>
 </html>
